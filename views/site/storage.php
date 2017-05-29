@@ -2,13 +2,18 @@
 session_start();
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+<<<<<<< HEAD
 use app\models\Things;
+=======
+use yii\helpers\Url;
+>>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
 $n = 1;
 $_SESSION['n'] = 1;
 
+<<<<<<< HEAD
 				if($_POST['name'.'1']!=null){
 					for($i = 1; $i<$n+1; $i++){
 						$post=new Things;
@@ -25,7 +30,13 @@ $_SESSION['n'] = 1;
 					}
 				}
 					
+=======
+
+
+
+>>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
 ?>
+
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 <script>
 $('.foo').bind('click', function(){
@@ -39,16 +50,13 @@ $('.foo').bind('click', function(){
             
 			<div class="center">
 						<h1>Склад</h1>
-						<button style = "margin-top:5%"name="button" id="add">Добавить товар</button>
+						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
 						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
 							<span color="red">Выход</span>
-							<!--<img src="img/exit.png" alt="exit">-->
-							
-							
 								<img src="img/exit.png" alt="" />
-							</a>
+						</a>
 					</div>
 					
 
@@ -197,7 +205,11 @@ $('.foo').bind('click', function(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
+<<<<<<< HEAD
                     <form id="post_form" action = "index.php" method="post">
+=======
+                    <form id="post_form" method="post" action="">
+>>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
                         <table class="Russia">
                             <thead>
                                 <tr>
@@ -213,7 +225,6 @@ $('.foo').bind('click', function(){
                                 </tr>
                             </thead>
                             <tbody class="hidden_table">
-                            
                                 <tr class="hidden-row">
                                     <td><input name="name<?=$_SESSION['n']?>" type="text"></td>
                                     <td><input name="s<?=$_SESSION['n']?>" type="text"></td>
@@ -225,10 +236,9 @@ $('.foo').bind('click', function(){
                                     <td><input name="amount<?=$_SESSION['n']?>" type="text"></td>
                                     <td><input name="price<?=$_SESSION['n']?>" type="text"></td>
                                 </tr>
-                                
                             </tbody>
                         </table>
-                        <input type="submit" name="Send" value="send">
+                        <input type="submit" name="send" value="send">
                     </form>
                 </div>
             </div>
@@ -237,6 +247,7 @@ $('.foo').bind('click', function(){
         </div>
     </div>
 
+<<<<<<< HEAD
     <script>
         $(document).ready(function() {
             $('#post_form').submit(function(){
@@ -257,9 +268,11 @@ $('.foo').bind('click', function(){
 		});
     </script>
 	
+=======
+>>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
 	<style>		
-   a {
-    color: #000000; /* Цвет обычной ссылки */ 
-    text-decoration: none; /* Убираем подчеркивание у ссылок */
-   }
+       a {
+        color: #000000; /* Цвет обычной ссылки */ 
+        text-decoration: none; /* Убираем подчеркивание у ссылок */
+       }
     </style>
