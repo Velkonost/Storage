@@ -32,7 +32,7 @@ $this->title = 'Storage';
 					'layout' => 'horizontal',
 					'fieldConfig' => [
 						'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-						'labelOptions' => ['class' => 'col-lg-1 control-label', 'style' => 'text-align: center;'],
+						'labelOptions' => ['class' => 'col-lg-1 control-label', 'style' => 'text-align: center;margin-left:35%'],
 						
 					],
 				]); ?>
