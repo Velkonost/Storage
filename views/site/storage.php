@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
-
+$this->enableCsrfValidation = false;
 
 ?>
 <script>
@@ -238,7 +238,7 @@ $('.foo').bind('click', function(){
         </div>
     </div>
 	
-	<style>
+	<style>		
    a {
     color: #000000; /* Цвет обычной ссылки */ 
     text-decoration: none; /* Убираем подчеркивание у ссылок */
