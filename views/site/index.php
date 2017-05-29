@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+$this->title = 'Storage';
 
 ?>
     <div class="wrapper">
@@ -8,15 +9,24 @@ use yii\helpers\Html;
             <div class="logo">
                 <a href="https://sport-form.ru/" target="_blank"><img src="img/logo.png" alt="logo"></a>
             </div>
-            <div class="center">
-                <h1>Склад</h1>
-                <button name="button" id="add">Добавить товар</button>
+            
+			<?php
+				if(Yii::$app->user->isGuest){
+					echo "<p><a class='btn btn-lg btn-success' href='index.php?r=site%2Fregister'>Sign Up</a></p>";
+					echo "<p>Have an account? <a href = 'index.php?r=site%2Flogin'>Log in</a></p>";
+				}else{
+					echo'<div class="center">
+						<h1>Склад</h1>
+						<button style = "margin-top:5%"name="button" id="add">Добавить товар</button>
+					</div>
+					<div class="exit">
+						<span>Выход</span>
+						<img src="img/exit.png" alt="exit">
+					</div>';
+					
+				}	
+		?>
 
-            </div>
-            <div class="exit">
-                <span>Выход</span>
-                <img src="img/exit.png" alt="exit">
-            </div>
         </div>
         <div class="clear"></div>
 
