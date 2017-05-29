@@ -63,11 +63,14 @@ class SiteController extends Controller
     {
 
         $russia = Things::find()->where("category='russia'")->all();
-        // $russia = $things->find('russia');
+        $ussr = Things::find()->where("category='ussr'")->all();
+        $olympiad80 = Things::find()->where("category='olympiad80'")->all();
+        
 
         return $this->render('storage', [
-            'russia' => $russia
-
+            'russia' => $russia,
+            'ussr' => $ussr,
+            'olympiad80' => $olympiad80
         ]);
     }
 
