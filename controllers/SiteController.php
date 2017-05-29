@@ -13,8 +13,11 @@ use app\models\Things;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 
+
+
 class SiteController extends Controller
 {
+	
     /**
      * @inheritdoc
      */
@@ -144,6 +147,12 @@ class SiteController extends Controller
 
        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+			
+			
+			Yii::$app->response->cookies->add(new \yii\web\Cookie([
+				'name' => 'cook',
+				'value' => 'cooksAreGood',
+			]));
            return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
         }
        return $this->render('index', [

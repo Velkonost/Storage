@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Things;
@@ -10,15 +10,20 @@ use yii\helpers;
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
+
+$cookies = Yii::$app->request->cookies;
 $n = 1;
+if (!$cookies->has('cook')){
+	Yii::$app->response->redirect('index.php');
+}
 
-
-
+function logoutT(){
+	Yii::$app->response->cookies->remove('cook');
+	Yii::$app->user->logout();
+}
 
 
 ?>
-<?= Html::csrfMetaTags() ?>
-<input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -30,7 +35,7 @@ $n = 1;
 						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
-						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
+						<a onclick = "<?php //ТУТА ДОДЕЛАТЬ ?>" href="index.php" title="">
 							<span color="red">Выход</span>
 								<img src="img/exit.png" alt="" />
 						</a>
