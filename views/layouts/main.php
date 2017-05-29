@@ -24,42 +24,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
-<<<<<<< HEAD
-    <?php
-   /* NavBar::begin([
-        'brandLabel' => '<img  src="img/logo.png"',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Add thing', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();*/
-    ?>
 
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-=======
     <div class="container">
         <?= $content ?>
     </div>
@@ -69,7 +34,6 @@ AppAsset::register($this);
 if (class_exists('yii\debug\Module')) {
     $this->off(\yii\web\View::EVENT_END_BODY, [\yii\debug\Module::getInstance(), 'renderToolbar']);
 }
->>>>>>> cd889b99cb5f66bf5a8615580e4cda687dfe3105
 
 $this->endBody() ?>
 </body>

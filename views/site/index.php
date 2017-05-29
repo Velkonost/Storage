@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <title>Склад</title>
-    <!--<link rel="stylesheet" href="css/reset.css">-->
-    <link rel="stylesheet" href="css/style.css">
+use yii\helpers\Html;
 
-</head>
-
-<body>
+?>
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -54,51 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span>Рос. Василек RU.V.01</span></td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>0</td>
-                            <td>16</td>
-                            <td>5700</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5900</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Красный RU.K.03</span></td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>3990</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. РОС.СФ</span></td>
-                            <td>4</td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>2</td>
-                            <td>21</td>
-                            <td>6500</td>
-                        </tr>
-
+                       <!--  -->
                     </tbody>
                 </table>
             </div>
@@ -126,51 +72,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span>Рос. Василек RU.V.01</span></td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>0</td>
-                            <td>16</td>
-                            <td>5700</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5900</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Красный RU.K.03</span></td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>3990</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. РОС.СФ</span></td>
-                            <td>4</td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>2</td>
-                            <td>21</td>
-                            <td>6500</td>
-                        </tr>
-
+                        <!--  -->
                     </tbody>
                 </table>
             </div>
@@ -198,58 +100,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span>Рос. Василек RU.V.01</span></td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>0</td>
-                            <td>16</td>
-                            <td>5700</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5900</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. Красный RU.K.03</span></td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>3990</td>
-                        </tr>
-                        <tr>
-                            <td><span>Рос. РОС.СФ</span></td>
-                            <td>4</td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>2</td>
-                            <td>21</td>
-                            <td>6500</td>
-                        </tr>
-
+                       <!--  -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="js/common.js"></script>
 
     <!--hidden-->
 
@@ -322,6 +179,3 @@
             <button name="button_add" id="future">Добавить</button>
         </div>
     </div>
-</body>
-
-</html>
