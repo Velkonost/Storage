@@ -23,10 +23,11 @@ $('.foo').bind('click', function(){
 					</div>
 					<div class="exit">
 						<form action="index.php">
+						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
 							<span>Выход</span>
 							<!--<img src="img/exit.png" alt="exit">-->
 							
-							<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
+							
 								<img src="img/exit.png" alt="" />
 							</a>
 						</form>
