@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
@@ -192,8 +193,9 @@ $('.foo').bind('click', function(){
                             </tr>
                         </thead>
                         <tbody class="hidden_table">
+                        <form action="index.php" method="post">
                             <tr class="hidden-row">
-                                <td><input type="text"></td>
+                                <td><input name="name[]" type="text"></td>
                                 <td><input type="text"></td>
                                 <td><input type="text"></td>
                                 <td><input type="text"></td>
@@ -225,11 +227,13 @@ $('.foo').bind('click', function(){
                                 <td><input type="text"></td>
                                 <td><input type="text"></td>
                             </tr>
+                            </form>
                         </tbody>
                     </table>
                 </div>
             </div>
             <button name="row_add" id="add_row">+</button>
-            <button name="button_add" id="future">Добавить</button>
+            <button type="submit" name="button_add" id="future">Добавить</button>
+            <?php echo $_POST['name']; ?>
         </div>
     </div>
