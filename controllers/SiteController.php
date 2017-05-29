@@ -61,32 +61,33 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
-<<<<<<< HEAD
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('index', [
-            'model' => $model,
-=======
-
+      
         $russia = Things::find()->where("category='russia'")->all();
-        $ussr = Things::find()->where("category='ussr'")->all();
-        $olympiad80 = Things::find()->where("category='olympiad80'")->all();
-        
+		$ussr = Things::find()->where("category='ussr'")->all();
+		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
 
-        return $this->render('storage', [
-            'russia' => $russia,
-            'ussr' => $ussr,
-            'olympiad80' => $olympiad80
->>>>>>> 1a670abe340dea3da0789811d35dc4da75434aba
-        ]);
+		return $this->render('storage', [
+		'russia' => $russia,
+		'ussr' => $ussr,
+		'olympiad80' => $olympiad80
+		]);
+
     }
+	public function actionIndex()
+     {
 
+       if (!Yii::$app->user->isGuest) {
+           return $this->goHome();
+        }
+
+       $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+           return $this->goBack();
+        }
+       return $this->render('index', [
+            'model' => $model,
+        ]);
+     }
     /**
      * Login action.
      *

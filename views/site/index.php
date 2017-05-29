@@ -1,6 +1,6 @@
 <?php
 
-<<<<<<< HEAD
+
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
@@ -10,8 +10,6 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
-=======
-	use yii\helpers\Html;
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\widgets\Breadcrumbs;
@@ -21,13 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->title = 'Storage';
 
-
->>>>>>> 1a670abe340dea3da0789811d35dc4da75434aba
 ?>
 <div class="site-login">
     <h1 style="margin-left: 47%"><?= Html::encode($this->title) ?></h1>
 
-<<<<<<< HEAD
     <p  style="margin-left: 40%">Please fill out the following fields to login:</p>
 
     <?php $form = ActiveForm::begin([
@@ -61,20 +56,3 @@ $this->title = 'Storage';
         To modify the username/password, please check out the code <code>app\models\User::$users</code>.
     </div>
 </div>
-=======
-<?php
-	if(Yii::$app->user->isGuest){
-
-       echo "<a href = 'index.php?r=site%2Flogin'>ppp</a>";
-	}else{
-		echo  '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>';
-	}
-?>
->>>>>>> 1a670abe340dea3da0789811d35dc4da75434aba
