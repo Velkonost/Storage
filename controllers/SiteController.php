@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
+use app\models\AddThingForm;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,18 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
+
+        $form = new AddThingForm();
       
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $name = Html::encode($form->name);
+            $category = Html::encode($form->category);
+        } else {
+            $name = '';
+            $category = '';
+        }
+
+
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
@@ -69,7 +81,10 @@ class SiteController extends Controller
 		return $this->render('storage', [
 		'russia' => $russia,
 		'ussr' => $ussr,
-		'olympiad80' => $olympiad80
+		'olympiad80' => $olympiad80,
+        'form' => $form,
+        'name' => $name,
+        'category' => $category
 		]);
 
     }
