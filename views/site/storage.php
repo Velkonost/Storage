@@ -5,9 +5,10 @@ use yii\widgets\ActiveForm;
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
-$this->enableCsrfValidation = false;
+
 
 ?>
+<input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 <script>
 $('.foo').bind('click', function(){
   alert('Вы нажали на элемент "foo"');
