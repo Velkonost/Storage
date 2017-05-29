@@ -1,5 +1,6 @@
 $(function() {
     $('#add').click(function(event) {
+
         $('#dark').toggle();
     });
     $(document).click(function(event) {
@@ -10,6 +11,7 @@ $(function() {
     $('#close').click(function(event) {
         $('#dark').toggle();
     });
+	
 });
 
 // Сворачиваем-разворачиваем таблицы
@@ -29,9 +31,10 @@ $(function() {
 });
 
 $(function(){
-    $('#add_row').click(function(e){
-        $('.hidden_table> .hidden-row:last').after('<tr class="hidden-row"><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>');
-        return false;
-       
-    });
-});
+			$('#add_row').click(function(e){
+				$('.hidden_table> .hidden-row:last').after('');
+				
+				return false;
+			   
+			});
+		});
