@@ -3,6 +3,11 @@
 use yii\helpers\Html;
 $this->title = 'Storage';
 
+$this->registerCssFile('css/style.css');
+foreach ($russia as $key) {
+    echo $key->name;
+}
+
 ?>
     <div class="wrapper">
         <div class="header">
@@ -47,7 +52,20 @@ $this->title = 'Storage';
                         </tr>
                     </thead>
                     <tbody>
-                       <!--  -->
+                       <?php
+                        foreach ($russia as $thing) { ?>
+                        <tr>
+                            <td><span><?=$thing->name ?></span></td>
+                            <td><?=$thing->s ?></td>
+                            <td><?=$thing->m ?></td>
+                            <td><?=$thing->l ?></td>
+                            <td><?=$thing->xl ?></td>
+                            <td><?=$thing->xxl ?></td>
+                            <td><?=$thing->xxxl ?></td>
+                            <td><?=$thing->amount ?></td>
+                            <td><?=$thing->price ?></td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -75,7 +93,20 @@ $this->title = 'Storage';
                         </tr>
                     </thead>
                     <tbody>
-                        <!--  -->
+                        <?php
+                        foreach ($ussr as $thing) { ?>
+                        <tr>
+                            <td><span><?=$thing->name ?></span></td>
+                            <td><?=$thing->s ?></td>
+                            <td><?=$thing->m ?></td>
+                            <td><?=$thing->l ?></td>
+                            <td><?=$thing->xl ?></td>
+                            <td><?=$thing->xxl ?></td>
+                            <td><?=$thing->xxxl ?></td>
+                            <td><?=$thing->amount ?></td>
+                            <td><?=$thing->price ?></td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -103,7 +134,20 @@ $this->title = 'Storage';
                         </tr>
                     </thead>
                     <tbody>
-                       <!--  -->
+                       <?php
+                        foreach ($olympiad80 as $thing) { ?>
+                        <tr>
+                            <td><span><?=$thing->name ?></span></td>
+                            <td><?=$thing->s ?></td>
+                            <td><?=$thing->m ?></td>
+                            <td><?=$thing->l ?></td>
+                            <td><?=$thing->xl ?></td>
+                            <td><?=$thing->xxl ?></td>
+                            <td><?=$thing->xxxl ?></td>
+                            <td><?=$thing->amount ?></td>
+                            <td><?=$thing->price ?></td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
