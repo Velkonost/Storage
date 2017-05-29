@@ -1,53 +1,327 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-/* @var $this yii\web\View */
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Склад</title>
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" href="css/style.css">
 
-$this->title = 'My Yii Application';
-?>
-<div class="site-index">
+</head>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">
+                <a href="https://sport-form.ru/" target="_blank"><img src="img/logo.png" alt="logo"></a>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <div class="center">
+                <h1>Склад</h1>
+                <button name="button" id="add">Добавить товар</button>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="exit">
+                <span>Выход</span>
+                <img src="img/exit.png" alt="exit">
             </div>
         </div>
+        <div class="clear"></div>
 
+
+        <!--tableRussia-->
+        <div class="container">
+            <div class="table-title" id="headRu">
+                <span class="country">Россия</span>
+                <div class="warhouse"><span class="sklad">42</span>
+                    <span class="reserv">(7)</span></div>
+            </div>
+            <div class="table-wrap" id="tableRussia">
+                <table class="Russia">
+                    <thead>
+                        <tr>
+                            <td><span>Название</span></td>
+                            <td>S</td>
+                            <td>M</td>
+                            <td>L</td>
+                            <td>XL</td>
+                            <td>XXL</td>
+                            <td>XXXL</td>
+                            <td>к-во</td>
+                            <td>цена</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>Рос. Василек RU.V.01</span></td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>16</td>
+                            <td>5700</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>5900</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Красный RU.K.03</span></td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>3990</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. РОС.СФ</span></td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>21</td>
+                            <td>6500</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--tableCCCP-->
+
+            <div class="table-title" id="headCccp">
+                <span class="country">СССР</span>
+                <div class="warhouse"><span class="sklad">21</span>
+                    <span class="reserv">(4)</span></div>
+            </div>
+            <div class="table-wrap" id="tableCccp">
+                <table class="Russia">
+                    <thead>
+                        <tr>
+                            <td><span>Название</span></td>
+                            <td>S</td>
+                            <td>M</td>
+                            <td>L</td>
+                            <td>XL</td>
+                            <td>XXL</td>
+                            <td>XXXL</td>
+                            <td>к-во</td>
+                            <td>цена</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>Рос. Василек RU.V.01</span></td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>16</td>
+                            <td>5700</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>5900</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Красный RU.K.03</span></td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>3990</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. РОС.СФ</span></td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>21</td>
+                            <td>6500</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--tableОлимпиада-->
+
+            <div class="table-title" id="headOlimp">
+                <span class="country">Олимпиада 80</span>
+                <div class="warhouse"><span class="sklad">21</span>
+                    <span class="reserv">(4)</span></div>
+            </div>
+            <div class="table-wrap" id="tableOlimpiada">
+                <table class="Russia">
+                    <thead>
+                        <tr>
+                            <td><span>Название</span></td>
+                            <td>S</td>
+                            <td>M</td>
+                            <td>L</td>
+                            <td>XL</td>
+                            <td>XXL</td>
+                            <td>XXXL</td>
+                            <td>к-во</td>
+                            <td>цена</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>Рос. Василек RU.V.01</span></td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>16</td>
+                            <td>5700</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Синий эл. RU.SE.02</span></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>5900</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. Красный RU.K.03</span></td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>3990</td>
+                        </tr>
+                        <tr>
+                            <td><span>Рос. РОС.СФ</span></td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>21</td>
+                            <td>6500</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="js/common.js"></script>
+
+    <!--hidden-->
+
+    <div id="dark">
+        <div class="spaceWrapper">
+            <div class="text_form">Выберите категорию:
+                <select>
+                    <option value="none">---</option>
+                    <option value="first">Россия</option>
+                    <option value="second">СССР</option>
+                    <option value="third">Олимпиада 80</option>
+                </select>
+            </div>
+            <button name="button_close" id="close">X</button>
+            <div id="modal-table">
+                <div class="table-wrap-hidden">
+                    <table class="Russia">
+                        <thead>
+                            <tr>
+                                <td><span>Название</span></td>
+                                <td>S</td>
+                                <td>M</td>
+                                <td>L</td>
+                                <td>XL</td>
+                                <td>XXL</td>
+                                <td>XXXL</td>
+                                <td>к-во</td>
+                                <td>цена</td>
+                            </tr>
+                        </thead>
+                        <tbody class="hidden_table">
+                            <tr class="hidden-row">
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr class="hidden-row">
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr class="hidden-row">
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button name="row_add" id="add_row">+</button>
+            <button name="button_add" id="future">Добавить</button>
+        </div>
+    </div>
+</body>
+
+</html>
