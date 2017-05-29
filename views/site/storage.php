@@ -25,12 +25,6 @@ $_SESSION['n'] = 1;
 						$post->save();
 					}
 				}
-					
-
-
-
-
-
 ?>
 
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
@@ -240,14 +234,6 @@ $('.foo').bind('click', function(){
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('#post_form').submit(function(){
-                $.post(function() {
-                    <?php echo "123"; ?>
-                });
-                return false;
-            });
-        });
 		$(function(){
 			$('#add_row').click(function(e){
 				<?php $n++?>
