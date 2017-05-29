@@ -7,6 +7,10 @@ $this->registerCssFile('css/style.css');
 
 
 ?>
+<script>
+$('.foo').bind('click', function(){
+  alert('Вы нажали на элемент "foo"');
+});</script>
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -18,8 +22,14 @@ $this->registerCssFile('css/style.css');
 						<button style = "margin-top:5%"name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
-						<span>Выход</span>
-						<img src="img/exit.png" alt="exit">
+						<form action="index.php">
+							<span>Выход</span>
+							<!--<img src="img/exit.png" alt="exit">-->
+							
+							<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
+								<img src="img/exit.png" alt="" />
+							</a>
+						</form>
 					</div>
 					
 
