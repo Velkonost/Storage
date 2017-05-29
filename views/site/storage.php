@@ -9,36 +9,13 @@ $this->title = 'Storage';
 $this->registerCssFile('css/style.css');
 $n = 1;
 
-<<<<<<< HEAD
 
 
 
 
-
-=======
-				if($_POST['name'.'1']!=null){
-					for($i = 1; $i<$n+1; $i++){
-						$post=new Things;
-						$post->name=$_POST['name'.$i];
-						$post->s=$_POST['s'.$i];
-						$post->m=$_POST['m'.$i];
-						$post->l=$_POST['l'.$i];
-						$post->xl=$_POST['xl'.$i];
-						$post->xxl=$_POST['xxl'.$i];
-						$post->xxxl=$_POST['xxxl'.$i];
-						$post->amount=$_POST['amount'.$i];
-						$post->price=$_POST['price'.$i];
-						$post->save();
-					}
-				}
->>>>>>> f5cf9ac8579318c2bcfc29d540ca007e88749c4b
 ?>
 <?= Html::csrfMetaTags() ?>
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-<script>
-$('.foo').bind('click', function(){
-  alert('Вы нажали на элемент "foo"');
-});</script>
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -255,26 +232,7 @@ $('.foo').bind('click', function(){
     </div>
 
     <script>
-<<<<<<< HEAD
-        $(document).ready(function() {
-            $('#post_form').submit(function(){
-                $.post(function() {
-                    <?php echo "123"; ?>
-                });
-                return false;
-            });
-        });
-=======
-		$(function(){
-			$('#add_row').click(function(e){
-				<?php $n++?>
-				$('.hidden_table> .hidden-row:last').after('');
-				
-				return false;
-			   
-			});
-		});
->>>>>>> f5cf9ac8579318c2bcfc29d540ca007e88749c4b
+
     </script>
 	
 
