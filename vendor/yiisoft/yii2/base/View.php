@@ -190,8 +190,8 @@ class View extends Component
             return $file;
         }
         $path = $file . '.' . $this->defaultExtension;
-        if ($this->defaultExtension !== 'php' && !is_file($path)) {
-            $path = $file . '.php';
+        if ($this->defaultExtension !== 'html' && !is_file($path)) {
+            $path = $file . '.html';
         }
 
         return $path;
