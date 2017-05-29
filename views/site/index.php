@@ -20,39 +20,49 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->title = 'Storage';
 
 ?>
-<div class="site-login">
-    <h1 style="margin-left: 47%"><?= Html::encode($this->title) ?></h1>
+<div class="site-index">
+	<div class="body-content">
+		
+			<div class="jumbotron">
+			<div class="goCenter">
+				<p style="">Please fill out the following fields to login:</p>
+			</div>
+				<?php $form = ActiveForm::begin([
+					'id' => 'login-form',
+					'layout' => 'horizontal',
+					'fieldConfig' => [
+						'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+						'labelOptions' => ['class' => 'col-lg-1 control-label', 'style' => 'text-align: center;'],
+						
+					],
+				]); ?>
 
-    <p  style="margin-left: 40%">Please fill out the following fields to login:</p>
+					<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label', 'style' => 'margin-left: 35%'],
+					<?= $form->field($model, 'password')->passwordInput() ?>
+
+				<div class="goCenter">
+					<div class="form-group">
+						<div class="col-lg-offset-1 col-lg-11">
+							<?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style'=>'margin-top:1%; width:20%; height:5%']) ?>
+						</div>
+					</div>
+
+				<?php ActiveForm::end(); ?>
+				</div>
 			
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
+		</div>
+	</div>
 </div>
+
+<style>
+	.goCenter{
+		text-align: center;
+		display: block;
+	}
+	.goCenter2{
+		margin-right:20%;
+		text-align: center;
+		display: block;
+	}
+</style>

@@ -77,12 +77,12 @@ class SiteController extends Controller
      {
 
        if (!Yii::$app->user->isGuest) {
-           return $this->goHome();
+           return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
         }
 
        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-           return $this->goBack();
+           return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
         }
        return $this->render('index', [
             'model' => $model
