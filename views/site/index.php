@@ -8,15 +8,15 @@
 
 <?php
 	if(Yii::$app->user->isGuest){
-+               echo ['label' => 'Login', 'url' => ['/site/login']];
+       echo "<a href = 'index.php?r=site%2Flogin'>ppp</a>";
 	}else{
-+                '<li>'
-+                . Html::beginForm(['/site/logout'], 'post')
-+                . Html::submitButton(
-+                    'Logout (' . Yii::$app->user->identity->username . ')',
-+                    ['class' => 'btn btn-link logout']
-+                )
-+                . Html::endForm()
-+                . '</li>'
-+            );
+		echo  '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>';
+	}
 ?>
