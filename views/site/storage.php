@@ -179,7 +179,7 @@ $n = 1;
                     <option value="second">СССР</option>
                     <option value="third">Олимпиада 80</option>
                 </select>-->
-				<?=$f->field($form, 'dropDownList')->dropDownList(['Россия'=>'Россия', 'СССР' =>'СССР', 'Олимпиада 80'=>'Олимпиада 80'], ['style'=>'width:30%;margin-left:0.5%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
+				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:30%;margin-left:0.5%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
 			
             <button name="button_close" id="close">X</button>

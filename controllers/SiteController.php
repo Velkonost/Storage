@@ -89,6 +89,7 @@ class SiteController extends Controller
 			$post->price=$price;
 			$post->category=$dropDownList;
 			$post->save();
+			
 			$form->name='';
 			$form->s='';
 			$form->m='';
