@@ -86,6 +86,7 @@ class SiteController extends Controller
 			$post->xxxl=$xxxl;
 			$post->amount=$amount;
 			$post->price=$price;
+			$post->save();
 			
 			$form->name='';
 			$form->s='';
