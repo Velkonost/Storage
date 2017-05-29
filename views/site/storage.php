@@ -21,16 +21,13 @@ $('.foo').bind('click', function(){
             
 			<div class="center">
 						<h1>Склад</h1>
-						<button style = "margin-top:5%"name="button" id="add">Добавить товар</button>
+						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
 						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
 							<span color="red">Выход</span>
-							<!--<img src="img/exit.png" alt="exit">-->
-							
-							
 								<img src="img/exit.png" alt="" />
-							</a>
+						</a>
 					</div>
 					
 
@@ -179,7 +176,7 @@ $('.foo').bind('click', function(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-                    <form id="post_form" method="post">
+                    <form id="post_form" method="post" action="">
                         <table class="Russia">
                             <thead>
                                 <tr>
@@ -195,7 +192,6 @@ $('.foo').bind('click', function(){
                                 </tr>
                             </thead>
                             <tbody class="hidden_table">
-                            
                                 <tr class="hidden-row">
                                     <td><input name="name" type="text"></td>
                                     <td><input type="text"></td>
@@ -229,10 +225,9 @@ $('.foo').bind('click', function(){
                                     <td><input type="text"></td>
                                     <td><input type="text"></td>
                                 </tr>
-                                
                             </tbody>
                         </table>
-                        <input type="submit" name="Send" value="send">
+                        <input type="submit" name="send" value="send">
                     </form>
                 </div>
             </div>
@@ -241,20 +236,9 @@ $('.foo').bind('click', function(){
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#post_form').submit(function(){
-                $.post(function() {
-                    <?php echo "123"; ?>
-                });
-                return false;
-            });
-        });
-    </script>
-	
 	<style>		
-   a {
-    color: #000000; /* Цвет обычной ссылки */ 
-    text-decoration: none; /* Убираем подчеркивание у ссылок */
-   }
+       a {
+        color: #000000; /* Цвет обычной ссылки */ 
+        text-decoration: none; /* Убираем подчеркивание у ссылок */
+       }
     </style>

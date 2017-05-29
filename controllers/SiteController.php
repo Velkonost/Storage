@@ -77,7 +77,7 @@ class SiteController extends Controller
 
     }
 	public function actionIndex()
-     {
+    {
 
        if (!Yii::$app->user->isGuest) {
            return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
@@ -90,7 +90,7 @@ class SiteController extends Controller
        return $this->render('index', [
             'model' => $model
         ]);
-     }
+    }
     /**
      * Login action.
      *
