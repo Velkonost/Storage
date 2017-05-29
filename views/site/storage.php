@@ -24,7 +24,7 @@ $('.foo').bind('click', function(){
 					</div>
 					<div class="exit">
 						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
-							<span>Выход</span>
+							<span color="red">Выход</span>
 							<!--<img src="img/exit.png" alt="exit">-->
 							
 							
@@ -237,3 +237,10 @@ $('.foo').bind('click', function(){
             <?php echo $_POST['name']; ?>
         </div>
     </div>
+	
+	<style>
+   a {
+    color: #000000; /* Цвет обычной ссылки */ 
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+   }
+    </style>
