@@ -8,31 +8,14 @@ $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
 $n = 1;
-$_SESSION['n'] = 1;
 
-				if($_POST['name'.'1']!=null){
-					for($i = 1; $i<$n+1; $i++){
-						$post=new Things;
-						$post->name=$_POST['name'.$i];
-						$post->s=$_POST['s'.$i];
-						$post->m=$_POST['m'.$i];
-						$post->l=$_POST['l'.$i];
-						$post->xl=$_POST['xl'.$i];
-						$post->xxl=$_POST['xxl'.$i];
-						$post->xxxl=$_POST['xxxl'.$i];
-						$post->amount=$_POST['amount'.$i];
-						$post->price=$_POST['price'.$i];
-						$post->save();
-					}
-				}
-					
 
 
 
 
 
 ?>
-
+<?= Html::csrfMetaTags() ?>
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 <script>
 $('.foo').bind('click', function(){
@@ -200,8 +183,6 @@ $('.foo').bind('click', function(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-     <form id="post_form" action = "index.php" method="post">
-                    <form id="post_form" method="post" action="">
                         <table class="Russia">
                             <thead>
                                 <tr>
@@ -218,24 +199,40 @@ $('.foo').bind('click', function(){
                             </thead>
                             <tbody class="hidden_table">
                                 <tr class="hidden-row">
-                                    <td><input name="name<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="s<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="m<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="l<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="xl<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="xxl<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="xxxl<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="amount<?=$_SESSION['n']?>" type="text"></td>
-                                    <td><input name="price<?=$_SESSION['n']?>" type="text"></td>
+									<?php $f = ActiveForm::begin()?>
+									<td><?= $f->field($form, 'name')->textInput(['style'=>'width:95%' ])->label('')?></td>
+									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'l')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'xl')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'xxl')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'xxxl')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'amount')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?= $f->field($form, 'price')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									
+									
+                                   <!-- <td><input name="name1" type="text"></td>
+                                    <td><input name="s1" type="text"></td>
+                                    <td><input name="m1" type="text"></td>
+                                    <td><input name="l1" type="text"></td>
+                                    <td><input name="xl1" type="text"></td>
+                                    <td><input name="xxl1" type="text"></td>
+                                    <td><input name="xxxl1" type="text"></td>
+                                    <td><input name="amount1" type="text"></td>
+                                    <td><input name="price1" type="text"></td>-->
                                 </tr>
                             </tbody>
+							
+							
                         </table>
-                        <input type="submit" name="send" value="send">
-                    </form>
+                        
+                    
                 </div>
-            </div>
-            <button name="row_add" id="add_row">+</button>
-            <button type="submit" name="button_add" id="future">Добавить</button>
+            </div><!--<button type="submit" name="button_add" id="future">Добавить</button>-->
+			<?= Html::submitButton('Добавить', ['id'=>'future', 'name' => 'button_add']) ?>
+			<?php ActiveForm::end(); ?>
+           <!-- <button name="row_add" id="add_row">+</button>-->
+            
         </div>
     </div>
 
@@ -248,15 +245,6 @@ $('.foo').bind('click', function(){
                 return false;
             });
         });
-		$(function(){
-			$('#add_row').click(function(e){
-				<?php $n++?>
-				$('.hidden_table> .hidden-row:last').after('');
-				
-				return false;
-			   
-			});
-		});
     </script>
 	
 

@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
 use app\models\AddThingForm;
+use app\models\FormAdd;
 
 class SiteController extends Controller
 {
@@ -62,7 +63,49 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
-
+		$form = new FormAdd();
+		if (($form->load(Yii::$app->request->post())) && ($form->validate())){
+			$name = Html::encode($form->name);
+			$s = Html::encode($form->s);
+			$m = Html::encode($form->m);
+			$l = Html::encode($form->l);
+			$xl = Html::encode($form->xl);
+			$xxl = Html::encode($form->xxl);
+			$xxxl = Html::encode($form->xxxl);
+			$amount = Html::encode($form->amount);
+			$price = Html::encode($form->price);
+			
+			$post=new Things;
+			$post->name=$name;
+			$post->s=$s;
+			$post->m=$m;
+			$post->l=$l;
+			$post->xl=$xl;
+			$post->xxl=$xxl;
+			$post->xxxl=$xxxl;
+			$post->amount=$amount;
+			$post->price=$price;
+			
+			$form->name='';
+			$form->s='';
+			$form->m='';
+			$form->l='';
+			$form->xl='';
+			$form->xxl='';
+			$form->xxxl='';
+			$form->amount='';
+			$form->price='';
+		}else{
+			$name = '';
+			$s = '';
+			$m = '';
+			$l = '';
+			$xl = '';
+			$xxl = '';
+			$xxxl = '';
+			$amount = '';
+			$price = '';
+		}
 
 
         $russia = Things::find()->where("category='russia'")->all();
@@ -74,7 +117,17 @@ class SiteController extends Controller
 		return $this->render('storage', [
     		'russia' => $russia,
     		'ussr' => $ussr,
-    		'olympiad80' => $olympiad80
+    		'olympiad80' => $olympiad80,
+			'form' => $form,
+			'name' => $name,
+			's' => $s,
+			'm' => $m,
+			'l' => $l,
+			'xl' => $xl,
+			'xxl' => $xxl,
+			'xxxl' => $xxxl,
+			'amount' => $amount,
+			'price' => $price
 		]);
 
     }
