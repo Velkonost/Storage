@@ -2,18 +2,14 @@
 session_start();
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-<<<<<<< HEAD
 use app\models\Things;
-=======
 use yii\helpers\Url;
->>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
 $n = 1;
 $_SESSION['n'] = 1;
 
-<<<<<<< HEAD
 				if($_POST['name'.'1']!=null){
 					for($i = 1; $i<$n+1; $i++){
 						$post=new Things;
@@ -30,11 +26,11 @@ $_SESSION['n'] = 1;
 					}
 				}
 					
-=======
 
 
 
->>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
+
+
 ?>
 
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
@@ -190,7 +186,6 @@ $('.foo').bind('click', function(){
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
-    <!--hidden-->
 
     <div id="dark">
         <div class="spaceWrapper">
@@ -205,11 +200,8 @@ $('.foo').bind('click', function(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-<<<<<<< HEAD
-                    <form id="post_form" action = "index.php" method="post">
-=======
+     <form id="post_form" action = "index.php" method="post">
                     <form id="post_form" method="post" action="">
->>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
                         <table class="Russia">
                             <thead>
                                 <tr>
@@ -247,7 +239,6 @@ $('.foo').bind('click', function(){
         </div>
     </div>
 
-<<<<<<< HEAD
     <script>
         $(document).ready(function() {
             $('#post_form').submit(function(){
@@ -268,8 +259,7 @@ $('.foo').bind('click', function(){
 		});
     </script>
 	
-=======
->>>>>>> 013388c51cae129b6bd1b4c2d3d8bbdfce81282a
+
 	<style>		
        a {
         color: #000000; /* Цвет обычной ссылки */ 
