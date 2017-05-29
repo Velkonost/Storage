@@ -75,6 +75,7 @@ class SiteController extends Controller
 			$xxxl = Html::encode($form->xxxl);
 			$amount = Html::encode($form->amount);
 			$price = Html::encode($form->price);
+			$dropDownList = Html::encode($form->dropDownList);
 			
 			$post=new Things;
 			$post->name=$name;
@@ -86,8 +87,8 @@ class SiteController extends Controller
 			$post->xxxl=$xxxl;
 			$post->amount=$amount;
 			$post->price=$price;
+			$post->category=$dropDownList;
 			$post->save();
-			
 			$form->name='';
 			$form->s='';
 			$form->m='';

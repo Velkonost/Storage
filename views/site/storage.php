@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Things;
 use yii\helpers\Url;
+use yii\helpers;
+
+
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
@@ -166,15 +169,19 @@ $n = 1;
 
 
     <div id="dark">
+	<?php $f = ActiveForm::begin()?>
+	
         <div class="spaceWrapper">
-            <div class="text_form">Выберите категорию:
-                <select>
+            <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
+               <!-- <select>
                     <option value="none">---</option>
                     <option value="first">Россия</option>
                     <option value="second">СССР</option>
                     <option value="third">Олимпиада 80</option>
-                </select>
+                </select>-->
+				<?=$f->field($form, 'dropDownList')->dropDownList(['Россия'=>'Россия', 'СССР' =>'СССР', 'Олимпиада 80'=>'Олимпиада 80'], ['style'=>'width:30%;margin-left:0.5%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
+			
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
@@ -194,7 +201,7 @@ $n = 1;
                             </thead>
                             <tbody class="hidden_table">
                                 <tr class="hidden-row">
-									<?php $f = ActiveForm::begin()?>
+									
 									<td><?= $f->field($form, 'name')->textInput(['style'=>'width:95%' ])->label('')?></td>
 									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' ])->label('')?></td>
