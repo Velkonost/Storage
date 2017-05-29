@@ -31,17 +31,15 @@ $this->title = 'Storage';
 					'id' => 'login-form',
 					'layout' => 'horizontal',
 					'fieldConfig' => [
-						'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-						'labelOptions' => ['class' => 'col-lg-1 control-label', 'style' => 'text-align: center;margin-left:35%'],
-						
+						'labelOptions' => ['style' => ''],
 					],
 				]); ?>
 
-					<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+ 					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'style'=>'width:40%;' ])->label('Username', ['style'=>'margin-left:20%'])?>
 
-					<?= $form->field($model, 'password')->passwordInput() ?>
+					<?= $form->field($model, 'password')->passwordInput([ 'style'=>'width:40%;' ])->label('Password', ['style'=>'margin-left:20%']) ?>
 
-				<div class="goCenter">
+				<div class="goCenter2">
 					<div class="form-group">
 						<div class="col-lg-offset-1 col-lg-11">
 							<?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style'=>'margin-top:1%; width:20%; height:5%']) ?>
@@ -57,12 +55,9 @@ $this->title = 'Storage';
 
 <style>
 	.goCenter{
-		text-align: center;
-		display: block;
+		margin-left:30%;
 	}
 	.goCenter2{
-		margin-right:20%;
-		text-align: center;
-		display: block;
+		margin-left:40%;
 	}
 </style>

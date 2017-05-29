@@ -22,7 +22,6 @@ $('.foo').bind('click', function(){
 						<button style = "margin-top:5%"name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
-						<form action="index.php">
 						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
 							<span>Выход</span>
 							<!--<img src="img/exit.png" alt="exit">-->
@@ -30,7 +29,6 @@ $('.foo').bind('click', function(){
 							
 								<img src="img/exit.png" alt="" />
 							</a>
-						</form>
 					</div>
 					
 
