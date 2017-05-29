@@ -23,8 +23,8 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
+<<<<<<< HEAD
     <?php
    /* NavBar::begin([
         'brandLabel' => '<img  src="img/logo.png"',
@@ -59,8 +59,19 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= $content ?>
+=======
+    <div class="container">
+        <?= $content ?>
+    </div>
+</div>
 
-<?php $this->endBody() ?>
+<?php 
+if (class_exists('yii\debug\Module')) {
+    $this->off(\yii\web\View::EVENT_END_BODY, [\yii\debug\Module::getInstance(), 'renderToolbar']);
+}
+>>>>>>> cd889b99cb5f66bf5a8615580e4cda687dfe3105
+
+$this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
