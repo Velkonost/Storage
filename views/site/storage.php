@@ -2,12 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 $this->title = 'Storage';
 
 $this->registerCssFile('css/style.css');
 
 
+
+
 ?>
+
 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 <script>
 $('.foo').bind('click', function(){
