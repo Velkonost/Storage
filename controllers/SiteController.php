@@ -63,15 +63,6 @@ class SiteController extends Controller
     public function actionStorage()
     {
 
-        $form = new AddThingForm();
-      
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            $name = Html::encode($form->name);
-            $category = Html::encode($form->category);
-        } else {
-            $name = '';
-            $category = '';
-        }
 
 
         $russia = Things::find()->where("category='russia'")->all();
@@ -79,12 +70,9 @@ class SiteController extends Controller
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
 
 		return $this->render('storage', [
-		'russia' => $russia,
-		'ussr' => $ussr,
-		'olympiad80' => $olympiad80,
-        'form' => $form,
-        'name' => $name,
-        'category' => $category
+    		'russia' => $russia,
+    		'ussr' => $ussr,
+    		'olympiad80' => $olympiad80
 		]);
 
     }

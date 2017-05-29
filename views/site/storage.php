@@ -178,65 +178,78 @@ $('.foo').bind('click', function(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-                    <table class="Russia">
-                        <thead>
-                            <tr>
-                                <td><span>Название</span></td>
-                                <td>S</td>
-                                <td>M</td>
-                                <td>L</td>
-                                <td>XL</td>
-                                <td>XXL</td>
-                                <td>XXXL</td>
-                                <td>к-во</td>
-                                <td>цена</td>
-                            </tr>
-                        </thead>
-                        <tbody class="hidden_table">
-                        <form action="index.php" method="post">
-                            <tr class="hidden-row">
-                                <td><input name="name[]" type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr class="hidden-row">
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr class="hidden-row">
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                            </tr>
-                            </form>
-                        </tbody>
-                    </table>
+                    <form id="post_form" method="post">
+                        <table class="Russia">
+                            <thead>
+                                <tr>
+                                    <td><span>Название</span></td>
+                                    <td>S</td>
+                                    <td>M</td>
+                                    <td>L</td>
+                                    <td>XL</td>
+                                    <td>XXL</td>
+                                    <td>XXXL</td>
+                                    <td>к-во</td>
+                                    <td>цена</td>
+                                </tr>
+                            </thead>
+                            <tbody class="hidden_table">
+                            
+                                <tr class="hidden-row">
+                                    <td><input name="name" type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr class="hidden-row">
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr class="hidden-row">
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text"></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        <input type="submit" name="Send" value="send">
+                    </form>
                 </div>
             </div>
             <button name="row_add" id="add_row">+</button>
             <button type="submit" name="button_add" id="future">Добавить</button>
-            <?php echo $_POST['name']; ?>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#post_form').submit(function(){
+                $.post(function() {
+                    <?php echo "123"; ?>
+                });
+                return false;
+            });
+        });
+    </script>
 	
 	<style>		
    a {
