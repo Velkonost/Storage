@@ -3,6 +3,11 @@
 use yii\helpers\Html;
 $this->title = 'Storage';
 
+$this->registerCssFile('css/style.css');
+foreach ($russia as $key) {
+    echo $key->name;
+}
+
 ?>
     <div class="wrapper">
         <div class="header">
