@@ -199,7 +199,6 @@ function logoutT(){
                                     <td>XL</td>
                                     <td>XXL</td>
                                     <td>XXXL</td>
-                                    <td>к-во</td>
                                     <td>цена</td>
                                 </tr>
                             </thead>
@@ -223,7 +222,6 @@ function logoutT(){
 									<td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									<td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									<td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'amounts[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									<td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									
                                 </tr>
@@ -237,7 +235,6 @@ function logoutT(){
                                     <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'amounts[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     
                                 </tr>
@@ -251,7 +248,6 @@ function logoutT(){
                                     <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'amounts[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     
                                 </tr>

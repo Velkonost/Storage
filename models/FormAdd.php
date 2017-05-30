@@ -6,13 +6,13 @@
 	
 	class FormAdd extends Model
 	{
-		public $name, $m, $s, $l, $xl, $xxl, $xxxl, $amount, $price, $dropDownList;
-		public $names = [], $ss = [], $ms = [], $ls = [], $xls = [], $xxls = [], $xxxls = [], $amounts = [], $prices = [];
+		public $name, $m, $s, $l, $xl, $xxl, $xxxl, $price, $dropDownList;
+		public $names = [], $ss = [], $ms = [], $ls = [], $xls = [], $xxls = [], $xxxls = [], $prices = [];
 		
 		public function rules(){
 			return [
 				// username and password are both required
-				[['ss', 'names', 'ms', 'ls', 'xls', 'xxls', 'xxxls', 'amounts', 'prices', 'dropDownList'], 'required', message => ''],
+				[['ss', 'names', 'ms', 'ls', 'xls', 'xxls', 'xxxls', 'prices', 'dropDownList'], 'required', message => ''],
 				// rememberMe must be a boolean value
 				['name', 'default', message => ''],
 				['s', 'number', message => ''],
@@ -21,7 +21,6 @@
 				['xl', 'number', message => ''],
 				['xxl', 'number', message => ''],
 				['xxxl', 'number', message => ''],
-				['amount', 'number', message => ''],
 				['price', 'number', message => ''],
 				['dropDownList','default', message=>'']
 			];

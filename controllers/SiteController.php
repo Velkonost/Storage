@@ -107,13 +107,12 @@ class SiteController extends Controller
     			$xl = Html::encode($form->xls[$i]);
     			$xxl = Html::encode($form->xxls[$i]);
     			$xxxl = Html::encode($form->xxxls[$i]);
-    			$amount = Html::encode($form->amounts[$i]);
     			$price = Html::encode($form->prices[$i]);
     			$dropDownList = Html::encode($form->dropDownList);
 
                 if ($name == NULL || $s == NULL || $m == NULL 
                     || $l == NULL || $xl == NULL || $xxl == NULL 
-                    || $xxxl == NULL || $amount == NULL || $price == NULL) continue;
+                    || $xxxl == NULL || $price == NULL) continue;
                 
                 if(in_array($name, $russiaExist)) {
                     $update = Things::find()->where("name='$name'")->one();
@@ -123,7 +122,7 @@ class SiteController extends Controller
                     $update->xl=$xl;
                     $update->xxl=$xxl;
                     $update->xxxl=$xxxl;
-                    $update->amount=$amount;
+                    $update->amount=$s+$m+$l+$xl+$xl+$xxl+$xxxl;
                     $update->price=$price;
                     $update->category=$dropDownList;
 
@@ -138,7 +137,7 @@ class SiteController extends Controller
                     $post->xl=$xl;
                     $post->xxl=$xxl;
                     $post->xxxl=$xxxl;
-                    $post->amount=$amount;
+                    $post->amount=$s+$m+$l+$xl+$xl+$xxl+$xxxl;
                     $post->price=$price;
                     $post->category=$dropDownList;
                     $post->save();    
