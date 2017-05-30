@@ -23,7 +23,7 @@ function logoutT(){
 }
 ?>
 <style type="text/css">
-    
+    table {width: 900px;}
     thead>tr>td:not(:nth-child(1)) {
         width: 60px;
     }
@@ -91,7 +91,6 @@ function logoutT(){
                     </tbody>
                 </table>
             </div>
-
 
             <!--tableCCCP-->
 

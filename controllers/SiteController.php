@@ -13,7 +13,6 @@ use app\models\Things;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 
-use bupy7\dynamic_fields\DynaFields;
 
 
 class SiteController extends Controller
@@ -223,7 +222,7 @@ class SiteController extends Controller
             return $this->goBack();
         }
         return $this->render('login', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 
