@@ -67,8 +67,33 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
+
+
+        $russiaNames = Things::find()->all();
+        $ussrNames = Things::find()->all();
+        $olympiad80Names = Things::find()->all();       
+
+        $russiaExist = array();
+        $ussrExist = array();
+        $olympiad80Exist = array();
+
+        foreach ($russiaNames as $key) {
+            array_push($russiaExist, $key->name);
+            
+        }
+
+        foreach ($ussrNames as $key) {
+            array_push($ussrExist, $key->name);
+        }
+
+        foreach ($olympiad80Names as $key) {
+            array_push($olympiad80Exist, $key->name);
+        }
+
 		$form = new FormAdd();
 		if (($form->load(Yii::$app->request->post())) && ($form->validate())){
+
+
 			$name = Html::encode($form->name);
 			$s = Html::encode($form->s);
 			$m = Html::encode($form->m);
@@ -80,18 +105,40 @@ class SiteController extends Controller
 			$price = Html::encode($form->price);
 			$dropDownList = Html::encode($form->dropDownList);
 			
-			$post=new Things;
-			$post->name=$name;
-			$post->s=$s;
-			$post->m=$m;
-			$post->l=$l;
-			$post->xl=$xl;
-			$post->xxl=$xxl;
-			$post->xxxl=$xxxl;
-			$post->amount=$amount;
-			$post->price=$price;
-			$post->category=$dropDownList;
-			$post->save();
+
+
+
+            if(in_array($name, $russiaExist)) {
+                $update = Things::find()->where("name='$name'")->one();
+                $update->s=$s;
+                $update->m=$m;
+                $update->l=$l;
+                $update->xl=$xl;
+                $update->xxl=$xxl;
+                $update->xxxl=$xxxl;
+                $update->amount=$amount;
+                $update->price=$price;
+                $update->category=$dropDownList;
+
+                $update->save();
+
+
+            } else {
+                $post=new Things;
+                $post->name=$name;
+                $post->s=$s;
+                $post->m=$m;
+                $post->l=$l;
+                $post->xl=$xl;
+                $post->xxl=$xxl;
+                $post->xxxl=$xxxl;
+                $post->amount=$amount;
+                $post->price=$price;
+                $post->category=$dropDownList;
+                $post->save();    
+            }
+
+			
 			
 			$form->name='';
 			$form->s='';
@@ -102,7 +149,7 @@ class SiteController extends Controller
 			$form->xxxl='';
 			$form->amount='';
 			$form->price='';
-		}else{
+		} else {
 			$name = '';
 			$s = '';
 			$m = '';
@@ -119,12 +166,14 @@ class SiteController extends Controller
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
 		
-		
 
 		return $this->render('storage', [
     		'russia' => $russia,
     		'ussr' => $ussr,
     		'olympiad80' => $olympiad80,
+            'russiaNames' => $russiaNames,
+            'ussrNames' => $ussrNames,
+            'olympiad80Names' => $olympiad80Names,
 			'form' => $form,
 			'name' => $name,
 			's' => $s,
