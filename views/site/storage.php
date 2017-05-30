@@ -89,7 +89,7 @@ function logoutT(){
 
             <div class="table-title" id="headCccp">
                 <span class="country">СССР</span>
-                <div class="warhouse"><span class="sklad">21</span>
+                <div class="warhouse"><span class="sklad"><?=$ussrAmount ?></span>
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableCccp">
@@ -130,7 +130,7 @@ function logoutT(){
 
             <div class="table-title" id="headOlimp">
                 <span class="country">Олимпиада 80</span>
-                <div class="warhouse"><span class="sklad">21</span>
+                <div class="warhouse"><span class="sklad"><?=$olympiad80Amount?></span>
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableOlimpiada">

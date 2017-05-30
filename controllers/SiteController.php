@@ -68,7 +68,6 @@ class SiteController extends Controller
     public function actionStorage()
     {
 
-
         $russiaNames = Things::find()->where("category='russia'")->all();
         $ussrNames = Things::find()->where("category='ussr'")->all();
         $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
@@ -97,7 +96,6 @@ class SiteController extends Controller
 
 		$form = new FormAdd();
 		if (($form->load(Yii::$app->request->post())) && ($form->validate())){
-
 
             $i = 0;
 
@@ -187,15 +185,6 @@ class SiteController extends Controller
             'ussrNames' => $ussrExist,
             'olympiad80Names' => $olympiad80Exist,
 			'form' => $form,
-			'name' => $name,
-			's' => $s,
-			'm' => $m,
-			'l' => $l,
-			'xl' => $xl,
-			'xxl' => $xxl,
-			'xxxl' => $xxxl,
-			'amount' => $amount,
-			'price' => $price,
             'russiaAmount' => $russiaAmount,
             'ussrAmount' => $ussrAmount,
             'olympiad80Amount' => $olympiad80Amount
