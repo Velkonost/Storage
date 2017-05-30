@@ -34,7 +34,7 @@ function logoutT(){
             <div class="logo">
                 <a href="https://sport-form.ru/" target="_blank"><img src="img/logo.png" alt="logo"></a>
             </div>
-            
+
 			<div class="center">
 						<h1>Склад</h1>
 						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
@@ -91,6 +91,7 @@ function logoutT(){
                     </tbody>
                 </table>
             </div>
+
 
             <!--tableCCCP-->
 

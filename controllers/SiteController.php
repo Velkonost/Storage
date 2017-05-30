@@ -13,6 +13,9 @@ use app\models\Things;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 
+use bupy7\dynamic_fields\DynaFields;
+
+
 class SiteController extends Controller
 {
 	
