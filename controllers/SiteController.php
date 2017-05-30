@@ -69,9 +69,9 @@ class SiteController extends Controller
     {
 
 
-        $russiaNames = Things::find()->all();
-        $ussrNames = Things::find()->all();
-        $olympiad80Names = Things::find()->all();       
+        $russiaNames = Things::find()->where("category='russia'")->all();
+        $ussrNames = Things::find()->where("category='ussr'")->all();
+        $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
 
         $russiaExist = array();
         $ussrExist = array();
@@ -107,7 +107,7 @@ class SiteController extends Controller
 			
 
 
-
+            echo $name;
             if(in_array($name, $russiaExist)) {
                 $update = Things::find()->where("name='$name'")->one();
                 $update->s=$s;
@@ -171,9 +171,9 @@ class SiteController extends Controller
     		'russia' => $russia,
     		'ussr' => $ussr,
     		'olympiad80' => $olympiad80,
-            'russiaNames' => $russiaNames,
-            'ussrNames' => $ussrNames,
-            'olympiad80Names' => $olympiad80Names,
+            'russiaNames' => $russiaExist,
+            'ussrNames' => $ussrExist,
+            'olympiad80Names' => $olympiad80Exist,
 			'form' => $form,
 			'name' => $name,
 			's' => $s,

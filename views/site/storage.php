@@ -21,12 +21,7 @@ function logoutT(){
 	Yii::$app->response->cookies->remove('cook');
 	
 }
-
-
-
 ?>
-
-
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -181,12 +176,6 @@ function logoutT(){
 	
         <div class="spaceWrapper">
             <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
-               <!-- <select>
-                    <option value="none">---</option>
-                    <option value="first">Россия</option>
-                    <option value="second">СССР</option>
-                    <option value="third">Олимпиада 80</option>
-                </select>-->
 				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:30%;margin-left:0.5%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
 			
@@ -209,17 +198,18 @@ function logoutT(){
                             </thead>
                             <tbody class="hidden_table">
                                 <tr class="hidden-row">
-									
-									<datalist id="browsers">
-									  <option value="Chrome">
-									  <option value="Firefox">
-									  <option value="Internet Explorer">
-									  <option value="Opera">
-									  <option value="Safari">
-									  <option value="Microsoft Edge">
+									<datalist id="names">
+                                    <?php foreach ($russiaNames as $name1) { ?>
+                                        <option value=<? echo $name1; ?>>
+                                    <?php } ?>
+                                    <?php foreach ($ussrNames as $name2) { ?>
+                                        <option value=<? echo $name2; ?>>
+                                    <?php } ?>
+                                    <?php foreach ($olympiad80Names as $name3) { ?>
+                                        <option value=<? echo $name3; ?>>
+                                    <?php } ?>
 									</datalist>
-									<td><?=$f->field($form, 'name')->textInput(['style'=>'width:95%', 'list'=>'browsers' ])->label('');?></td>
-									<!--<td><?/*= $f->field($form, 'name')->textInput(['style'=>'width:95%' ])->label('')*/?></td>-->
+									<td><?=$f->field($form, 'name')->textInput(['style'=>'width:95%', 'list'=>'names' ])->label('');?></td>
 									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'l')->textInput(['style'=>'width:98%' ])->label('')?></td>
@@ -229,16 +219,6 @@ function logoutT(){
 									<td><?= $f->field($form, 'amount')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'price')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									
-									
-                                   <!-- <td><input name="name1" type="text"></td>
-                                    <td><input name="s1" type="text"></td>
-                                    <td><input name="m1" type="text"></td>
-                                    <td><input name="l1" type="text"></td>
-                                    <td><input name="xl1" type="text"></td>
-                                    <td><input name="xxl1" type="text"></td>
-                                    <td><input name="xxxl1" type="text"></td>
-                                    <td><input name="amount1" type="text"></td>
-                                    <td><input name="price1" type="text"></td>-->
                                 </tr>
                             </tbody>
 							
@@ -262,6 +242,11 @@ function logoutT(){
 
 	<style>		
        a {
+        color: #000000; /* Цвет обычной ссылки */ 
+        text-decoration: none; /* Убираем подчеркивание у ссылок */
+       }
+
+       a:hover {
         color: #000000; /* Цвет обычной ссылки */ 
         text-decoration: none; /* Убираем подчеркивание у ссылок */
        }
