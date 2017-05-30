@@ -209,7 +209,7 @@ function logoutT(){
                                         <option value=<? echo $name3; ?>>
                                     <?php } ?>
 									</datalist>
-									<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names', ])->label('');?></td>
+									<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
 									<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>

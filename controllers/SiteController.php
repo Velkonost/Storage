@@ -107,6 +107,12 @@ class SiteController extends Controller
     			$amount = Html::encode($form->amounts[$i]);
     			$price = Html::encode($form->prices[$i]);
     			$dropDownList = Html::encode($form->dropDownList);
+
+                if ($name == NULL || $s == NULL 
+                    || $m == NULL || $l == NULL 
+                    || $xl == NULL || $xxl == NULL 
+                    || $xxxl == NULL || $amount == NULL 
+                    || $price == NULL) continue;
     			
 
                 // foreach ($form->names as $key ) {
