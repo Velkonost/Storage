@@ -45,7 +45,7 @@ function logoutT(){
 
 
         <!--tableRussia-->
-        <div class="container">
+        <div class="" style="margin-top: 40px">
             <div class="table-title" id="headRu">
                 <span class="country">Россия</span>
                 <div class="warhouse"><span class="sklad">42</span>
@@ -209,15 +209,15 @@ function logoutT(){
                                         <option value=<? echo $name3; ?>>
                                     <?php } ?>
 									</datalist>
-									<td><?=$f->field($form, 'name')->textInput(['style'=>'width:95%', 'list'=>'names' ])->label('');?></td>
-									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'l')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'xl')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'xxl')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'xxxl')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'amount')->textInput(['style'=>'width:98%' ])->label('')?></td>
-									<td><?= $f->field($form, 'price')->textInput(['style'=>'width:98%' ])->label('')?></td>
+									<td><?=$f->field($form, 'name')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
+									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'l')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xl')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xxl')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xxxl')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'amount')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'price')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
 									
                                 </tr>
                             </tbody>
