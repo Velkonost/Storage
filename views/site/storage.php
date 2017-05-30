@@ -19,7 +19,7 @@ if (!$cookies->has('cook')){
 
 function logoutT(){
 	Yii::$app->response->cookies->remove('cook');
-	Yii::$app->user->logout();
+	
 }
 
 
@@ -35,7 +35,7 @@ function logoutT(){
 						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
 					</div>
 					<div class="exit">
-						<a onclick = "<?php //ТУТА ДОДЕЛАТЬ ?>" href="index.php" title="">
+						<a onclick = "<?php Yii::$app->user->logout();//ТУТА ДОДЕЛАТЬ ?>" href="index.php" title="">
 							<span color="red">Выход</span>
 								<img src="img/exit.png" alt="" />
 						</a>

@@ -25,7 +25,7 @@ $this->title = 'Storage';
 		
 			<div class="jumbotron">
 			<div class="goCenter">
-				<p style="">Please fill out the following fields to login:</p>
+				<p style="">Заполните все поля, чтобы авторизоваться:</p>
 			</div>
 				<?php $form = ActiveForm::begin([
 					'id' => 'login-form',
@@ -35,14 +35,14 @@ $this->title = 'Storage';
 					],
 				]); ?>
 
- 					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'style'=>'width:40%;' ])->label('Username', ['style'=>'margin-left:20%'])?>
+ 					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'style'=>'width:40%;' ])->label('Имя пользователя', ['style'=>'margin-left:20%'])?>
 
-					<?= $form->field($model, 'password')->passwordInput([ 'style'=>'width:40%;' ])->label('Password', ['style'=>'margin-left:20%']) ?>
+					<?= $form->field($model, 'password')->passwordInput([ 'style'=>'width:40%;' ])->label('Пароль', ['style'=>'margin-left:20%']) ?>
 
 				<div class="goCenter2">
 					<div class="form-group">
 						<div class="col-lg-offset-1 col-lg-11">
-							<?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style'=>'margin-top:1%; width:20%; height:5%']) ?>
+							<?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style'=>'margin-top:1%; width:20%; height:5%']) ?>
 						</div>
 					</div>
 
