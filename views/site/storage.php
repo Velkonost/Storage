@@ -22,6 +22,13 @@ function logoutT(){
 	
 }
 ?>
+<style type="text/css">
+    
+    thead>tr>td:not(:nth-child(1)) {
+        width: 60px;
+    }
+
+</style>
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -52,7 +59,7 @@ function logoutT(){
                     <span class="reserv">(7)</span></div>
             </div>
             <div class="table-wrap" id="tableRussia">
-                <table class="Russia">
+                <table class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -93,7 +100,7 @@ function logoutT(){
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableCccp">
-                <table class="Russia">
+                <table class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -134,7 +141,7 @@ function logoutT(){
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableOlimpiada">
-                <table class="Russia" style="border=10px">
+                <table class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -182,7 +189,7 @@ function logoutT(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-                        <table class="Russia" >
+                        <table class="Russia" style="border-collapse: separate; border-spacing: 1px;">
                             <thead>
                                 <tr>
                                     <td><span>Название</span></td>

@@ -13,8 +13,6 @@ use app\models\Things;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 
-
-
 class SiteController extends Controller
 {
 	
@@ -111,11 +109,9 @@ class SiteController extends Controller
     			$price = Html::encode($form->prices[$i]);
     			$dropDownList = Html::encode($form->dropDownList);
 
-                if ($name == NULL || $s == NULL 
-                    || $m == NULL || $l == NULL 
-                    || $xl == NULL || $xxl == NULL 
-                    || $xxxl == NULL || $amount == NULL 
-                    || $price == NULL) continue;
+                if ($name == NULL || $s == NULL || $m == NULL 
+                    || $l == NULL || $xl == NULL || $xxl == NULL 
+                    || $xxxl == NULL || $amount == NULL || $price == NULL) continue;
                 
                 if(in_array($name, $russiaExist)) {
                     $update = Things::find()->where("name='$name'")->one();
@@ -131,7 +127,6 @@ class SiteController extends Controller
 
                     $update->save();
 
-
                 } else {
                     $post=new Things;
                     $post->name=$name;
@@ -146,8 +141,6 @@ class SiteController extends Controller
                     $post->category=$dropDownList;
                     $post->save();    
                 }
-
-    			
     			
     			// $form->name='';
     			// $form->s='';
@@ -170,7 +163,6 @@ class SiteController extends Controller
 			$amount = '';
 			$price = '';
 		}
-
 
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
