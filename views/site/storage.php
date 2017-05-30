@@ -216,39 +216,39 @@ function logoutT(){
                                     <?php } ?>
 									</datalist>
 									<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
-									<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-									<td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+									<td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
 									
                                 </tr>
 
                                 <tr class="hidden-row">
                                   
                                     <td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
-                                    <td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     
                                 </tr>
 
                                 <tr class="hidden-row">
                                     
                                     <td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
-                                    <td><?= $f->field($form, 'ss[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
-                                    <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'ss[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                    <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
                                     
                                 </tr>
                             </tbody>

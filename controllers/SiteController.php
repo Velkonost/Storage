@@ -127,6 +127,15 @@ class SiteController extends Controller
                     $update->category=$dropDownList;
 
                     $update->save();
+					
+					$form->name='0';
+					$form->s='0';
+					$form->m='0';
+					$form->l='0';
+					$form->xl='0';
+					$form->xxl='0';
+					$form->xxxl='0';
+					$form->price='0';
 
                 } else {
                     $post=new Things;
@@ -140,18 +149,17 @@ class SiteController extends Controller
                     $post->amount=$s+$m+$l+$xl+$xl+$xxl+$xxxl;
                     $post->price=$price;
                     $post->category=$dropDownList;
-                    $post->save();    
+                    $post->save(); 
+					$form->name='0';
+					$form->s='0';
+					$form->m='0';
+					$form->l='0';
+					$form->xl='0';
+					$form->xxl='0';
+					$form->xxxl='0';
+					$form->price='0';					
                 }
-    			
-    			// $form->name='';
-    			// $form->s='';
-    			// $form->m='';
-    			// $form->l='';
-    			// $form->xl='';
-    			// $form->xxl='';
-    			// $form->xxxl='';
-    			// $form->amount='';
-    			// $form->price='';
+    		
             }
 		} else {
 			$name = '';
