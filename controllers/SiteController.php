@@ -116,14 +116,14 @@ class SiteController extends Controller
                 
                 if(in_array($name, $russiaExist)) {
                     $update = Things::find()->where("name='$name'")->one();
-                    $update->s=$s;
-                    $update->m=$m;
-                    $update->l=$l;
-                    $update->xl=$xl;
-                    $update->xxl=$xxl;
-                    $update->xxxl=$xxxl;
-                    $update->amount=$s+$m+$l+$xl+$xl+$xxl+$xxxl;
-                    $update->price=$price;
+                    $update->s += $s;
+                    $update->m += $m;
+                    $update->l += $l;
+                    $update->xl += $xl;
+                    $update->xxl += $xxl;
+                    $update->xxxl += $xxxl;
+                    $update->amount += $s+$m+$l+$xl+$xl+$xxl+$xxxl;
+                    $update->price += $price;
                     $update->category=$dropDownList;
 
                     $update->save();
