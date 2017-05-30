@@ -48,7 +48,7 @@ function logoutT(){
         <div class="" style="margin-top: 40px">
             <div class="table-title" id="headRu">
                 <span class="country">Россия</span>
-                <div class="warhouse"><span class="sklad">42</span>
+                <div class="warhouse"><span class="sklad"><?=$russiaAmount?></span>
                     <span class="reserv">(7)</span></div>
             </div>
             <div class="table-wrap" id="tableRussia">
@@ -134,7 +134,7 @@ function logoutT(){
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableOlimpiada">
-                <table class="Russia">
+                <table class="Russia" style="border=10px">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -182,7 +182,7 @@ function logoutT(){
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
-                        <table class="Russia">
+                        <table class="Russia" >
                             <thead>
                                 <tr>
                                     <td><span>Название</span></td>

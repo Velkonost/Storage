@@ -77,17 +77,22 @@ class SiteController extends Controller
         $ussrExist = array();
         $olympiad80Exist = array();
 
+        $russiaAmount = 0; $ussrAmount = 0; $olympiad80Amount = 0;
+
         foreach ($russiaNames as $key) {
             array_push($russiaExist, $key->name);
-            
+            $russiaAmount += $key->amount;
         }
 
         foreach ($ussrNames as $key) {
             array_push($ussrExist, $key->name);
+            $ussrAmount += $key->amount;
+
         }
 
         foreach ($olympiad80Names as $key) {
             array_push($olympiad80Exist, $key->name);
+            $olympiad80Amount += $key->amount;
         }
 
 		$form = new FormAdd();
@@ -96,7 +101,7 @@ class SiteController extends Controller
 
             $i = 0;
 
-            for(; $i < 3; $i ++) {
+            for(; $i < 3; $i++) {
     			$name = Html::encode($form->names[$i]);
     			$s = Html::encode($form->ss[$i]);
     			$m = Html::encode($form->ms[$i]);
@@ -113,11 +118,6 @@ class SiteController extends Controller
                     || $xl == NULL || $xxl == NULL 
                     || $xxxl == NULL || $amount == NULL 
                     || $price == NULL) continue;
-    			
-
-                // foreach ($form->names as $key ) {
-                //     echo $key.'<br/>';
-                // }
                 
                 if(in_array($name, $russiaExist)) {
                     $update = Things::find()->where("name='$name'")->one();
@@ -195,7 +195,10 @@ class SiteController extends Controller
 			'xxl' => $xxl,
 			'xxxl' => $xxxl,
 			'amount' => $amount,
-			'price' => $price
+			'price' => $price,
+            'russiaAmount' => $russiaAmount,
+            'ussrAmount' => $ussrAmount,
+            'olympiad80Amount' => $olympiad80Amount
 		]);
 
     }
