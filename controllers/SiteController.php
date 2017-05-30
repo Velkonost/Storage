@@ -94,61 +94,67 @@ class SiteController extends Controller
 		if (($form->load(Yii::$app->request->post())) && ($form->validate())){
 
 
-			$name = Html::encode($form->name);
-			$s = Html::encode($form->s);
-			$m = Html::encode($form->m);
-			$l = Html::encode($form->l);
-			$xl = Html::encode($form->xl);
-			$xxl = Html::encode($form->xxl);
-			$xxxl = Html::encode($form->xxxl);
-			$amount = Html::encode($form->amount);
-			$price = Html::encode($form->price);
-			$dropDownList = Html::encode($form->dropDownList);
-			
+            $i = 0;
+
+            for(; $i < 3; $i ++) {
+    			$name = Html::encode($form->names[$i]);
+    			$s = Html::encode($form->ss[$i]);
+    			$m = Html::encode($form->ms[$i]);
+    			$l = Html::encode($form->ls[$i]);
+    			$xl = Html::encode($form->xls[$i]);
+    			$xxl = Html::encode($form->xxls[$i]);
+    			$xxxl = Html::encode($form->xxxls[$i]);
+    			$amount = Html::encode($form->amounts[$i]);
+    			$price = Html::encode($form->prices[$i]);
+    			$dropDownList = Html::encode($form->dropDownList);
+    			
+
+                // foreach ($form->names as $key ) {
+                //     echo $key.'<br/>';
+                // }
+                
+                if(in_array($name, $russiaExist)) {
+                    $update = Things::find()->where("name='$name'")->one();
+                    $update->s=$s;
+                    $update->m=$m;
+                    $update->l=$l;
+                    $update->xl=$xl;
+                    $update->xxl=$xxl;
+                    $update->xxxl=$xxxl;
+                    $update->amount=$amount;
+                    $update->price=$price;
+                    $update->category=$dropDownList;
+
+                    $update->save();
 
 
-            echo $name;
-            if(in_array($name, $russiaExist)) {
-                $update = Things::find()->where("name='$name'")->one();
-                $update->s=$s;
-                $update->m=$m;
-                $update->l=$l;
-                $update->xl=$xl;
-                $update->xxl=$xxl;
-                $update->xxxl=$xxxl;
-                $update->amount=$amount;
-                $update->price=$price;
-                $update->category=$dropDownList;
+                } else {
+                    $post=new Things;
+                    $post->name=$name;
+                    $post->s=$s;
+                    $post->m=$m;
+                    $post->l=$l;
+                    $post->xl=$xl;
+                    $post->xxl=$xxl;
+                    $post->xxxl=$xxxl;
+                    $post->amount=$amount;
+                    $post->price=$price;
+                    $post->category=$dropDownList;
+                    $post->save();    
+                }
 
-                $update->save();
-
-
-            } else {
-                $post=new Things;
-                $post->name=$name;
-                $post->s=$s;
-                $post->m=$m;
-                $post->l=$l;
-                $post->xl=$xl;
-                $post->xxl=$xxl;
-                $post->xxxl=$xxxl;
-                $post->amount=$amount;
-                $post->price=$price;
-                $post->category=$dropDownList;
-                $post->save();    
+    			
+    			
+    			// $form->name='';
+    			// $form->s='';
+    			// $form->m='';
+    			// $form->l='';
+    			// $form->xl='';
+    			// $form->xxl='';
+    			// $form->xxxl='';
+    			// $form->amount='';
+    			// $form->price='';
             }
-
-			
-			
-			$form->name='';
-			$form->s='';
-			$form->m='';
-			$form->l='';
-			$form->xl='';
-			$form->xxl='';
-			$form->xxxl='';
-			$form->amount='';
-			$form->price='';
 		} else {
 			$name = '';
 			$s = '';
