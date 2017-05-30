@@ -24,6 +24,8 @@ function logoutT(){
 
 
 ?>
+
+
     <div class="wrapper">
         <div class="header">
             <div class="logo">
@@ -207,7 +209,16 @@ function logoutT(){
                             <tbody class="hidden_table">
                                 <tr class="hidden-row">
 									
-									<td><?= $f->field($form, 'name')->textInput(['style'=>'width:95%' ])->label('')?></td>
+									<datalist id="browsers">
+									  <option value="Chrome">
+									  <option value="Firefox">
+									  <option value="Internet Explorer">
+									  <option value="Opera">
+									  <option value="Safari">
+									  <option value="Microsoft Edge">
+									</datalist>
+									<td><?=$f->field($form, 'name')->textInput(['style'=>'width:95%', 'list'=>'browsers' ])->label('');?></td>
+									<!--<td><?/*= $f->field($form, 'name')->textInput(['style'=>'width:95%' ])->label('')*/?></td>-->
 									<td><?= $f->field($form, 's')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'm')->textInput(['style'=>'width:98%' ])->label('')?></td>
 									<td><?= $f->field($form, 'l')->textInput(['style'=>'width:98%' ])->label('')?></td>
