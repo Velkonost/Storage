@@ -76,7 +76,7 @@ function logoutT(){
                     <span class="reserv">(7)</span></div>
             </div>
             <div class="table-wrap" id="tableRussia">
-                <table class="Russia" style="border-collapse: separate; border-spacing: 3px;">
+                <table name="russiaContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -147,7 +147,7 @@ function logoutT(){
             <div class="table-wrap" id="tableCccp">
             
             
-               <table class="Russia" style="border-collapse: separate; border-spacing: 3px;"> 
+               <table name="ussrContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;"> 
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -217,7 +217,7 @@ function logoutT(){
                     <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableOlimpiada">
-                <table class="Russia" style="border-collapse: separate; border-spacing: 3px;">
+                <table name="olympiad80Content" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
                             <td><span>Название</span></td>
@@ -278,7 +278,7 @@ function logoutT(){
             </div>
         </div>
     </div>
-        <?= Html::submitButton('Сохранить', ['style' => 'margin-top: 50px; margin-left:40%', 'name' => 'btn_save']) ?>
+        <?= Html::submitButton('Сохранить', ['style' => 'margin-top: 50px; margin-left:40%', 'name' => 'btn_save', 'id' => 'btnSave', 'class' => 'hidden']) ?>
     <?php ActiveForm::end();?>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
@@ -319,7 +319,7 @@ function logoutT(){
                                     <?php foreach ($olympiad80Names as $name3) { ?>
                                         <option value=<? echo $name3; ?>>
                                     <?php } ?>
-								<?php for($i=0;$i<10; $i++){?>
+								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
 											<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
@@ -360,26 +360,64 @@ function logoutT(){
         });
 
         $('#inventar').click(function(event) {
-            if (!open) {
+            
 
                 hide = Array.from(document.getElementsByName('showField'));
 
-                hide.forEach(function(entry) {
-                    entry.setAttribute('class', 'hidden');
-                    entry.style.height = "0px";
-                });
-                show.forEach(function(entry) {
-                    entry.setAttribute('class', 'inputField');
-                    entry.style.height = "50px";
+                if (!open) {
+                    hide.forEach(function(entry) {
+                        entry.setAttribute('class', 'hidden');
+                        
+                    });
+                    show.forEach(function(entry) {
+                        entry.setAttribute('class', 'inputField');
+                        
 
-                });
+                    });
 
-                $('#tableRussia').toggle();
-                $('#tableCccp').toggle();
-                $('#tableOlimpiada').toggle();
+                    document.getElementById('btnSave').setAttribute('class', '');
 
-                open = true;
-            }
+                    open = true;
+                } else {
+
+                    hide.forEach(function(entry) {
+                        entry.setAttribute('class', '');
+                        
+                    });
+                    show.forEach(function(entry) {
+                        entry.setAttribute('class', 'hidden');
+                        entry.style.height = "50px";
+
+                    });
+                    document.getElementById('btnSave').setAttribute('class', 'hidden');
+
+                    open = false;
+                }
+
+                $('#tableRussia').toggle(
+                    function () {
+                        if ($("russiaContent").is(':visible') && open) {
+                            $('#tableRussia').toggle();
+                        } 
+                    }
+                );
+                $('#tableCccp').toggle(
+                    function () {
+                        if ($("ussrContent").is(':visible') && open) {
+                            $('#tableRussia').toggle();
+                        } 
+                    }
+                );
+                $('#tableOlimpiada').toggle(
+                    function () {
+                        if ($("olympiad80Content").is(':visible') && open) {
+                            $('#tableRussia').toggle();
+                        } 
+                    }
+                );
+
+                // open = true;
+            
         });
     });
 
