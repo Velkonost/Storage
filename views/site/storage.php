@@ -43,14 +43,6 @@ function logoutT(){
         position: absolute !important;
         margin: 0 !important;
     }
-    .inputField {
-        width: 0px !important;
-        height: 0px !important;
-        padding: 0 !important;
-        font-size: 0%;
-        position: absolute !important;
-        margin: 0 !important;   
-    }
 
 </style>
     <div class="wrapper">

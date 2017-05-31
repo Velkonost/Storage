@@ -176,14 +176,14 @@ class SiteController extends Controller
         if (($editForm->load(Yii::$app->request->post())) && ($editForm->validate())){
             $amountThings = Things::find()->all();
             $amountRussia = count(Things::find()->where("category='russia'")->all());
-            // $amountUssr = count(Things::find()->where("category='ussr'")->all());
-            // $amountOlympiad80 = count(Things::find()->where("category='olympiad80'")->all());
+            $amountUssr = count(Things::find()->where("category='ussr'")->all());
+            $amountOlympiad80 = count(Things::find()->where("category='olympiad80'")->all());
             
             // $num = count($editForm->editXxxls);
 
             Things::deleteAll();
             for ($i = 0; $i < $amountRussia; $i++) {
-                // echo "$editForm->editNames[$i]<br>";
+                
                 $post = new Things;
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
@@ -194,6 +194,38 @@ class SiteController extends Controller
                 $post->xxxl = Html::encode($editForm->editXxxls[$i]);
                 $post->price = Html::encode($editForm->editPrices[$i]);
                 $post->category = 'russia';
+                $amount = ($post->s + $post->m + $post->l + $post->xl + $post->xxl + $post->xxxl);
+                $post->amount = $amount; 
+
+                $post->save();
+            }
+            for ($i = $amountRussia; $i < ($amountRussia + $amountUssr); $i++) {
+                $post = new Things;
+                $post->name = Html::encode($editForm->editNames[$i]);
+                $post->s = Html::encode($editForm->editSs[$i]);
+                $post->m = Html::encode($editForm->editMs[$i]);
+                $post->l = Html::encode($editForm->editLs[$i]);
+                $post->xl = Html::encode($editForm->editXls[$i]);
+                $post->xxl = Html::encode($editForm->editXxls[$i]);
+                $post->xxxl = Html::encode($editForm->editXxxls[$i]);
+                $post->price = Html::encode($editForm->editPrices[$i]);
+                $post->category = 'ussr';
+                $amount = ($post->s + $post->m + $post->l + $post->xl + $post->xxl + $post->xxxl);
+                $post->amount = $amount; 
+
+                $post->save();
+            }
+            for ($i = ($amountUssr + $amountRussia); $i < ($amountRussia + $amountUssr + $amountOlympiad80); $i++) {
+                $post = new Things;
+                $post->name = Html::encode($editForm->editNames[$i]);
+                $post->s = Html::encode($editForm->editSs[$i]);
+                $post->m = Html::encode($editForm->editMs[$i]);
+                $post->l = Html::encode($editForm->editLs[$i]);
+                $post->xl = Html::encode($editForm->editXls[$i]);
+                $post->xxl = Html::encode($editForm->editXxls[$i]);
+                $post->xxxl = Html::encode($editForm->editXxxls[$i]);
+                $post->price = Html::encode($editForm->editPrices[$i]);
+                $post->category = 'olympiad80';
                 $amount = ($post->s + $post->m + $post->l + $post->xl + $post->xxl + $post->xxxl);
                 $post->amount = $amount; 
 
