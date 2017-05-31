@@ -114,7 +114,7 @@ class SiteController extends Controller
                     || $l == NULL || $xl == NULL || $xxl == NULL 
                     || $xxxl == NULL || $price == NULL) continue;
                 
-                if(in_array($name, $russiaExist)) {
+                if(in_array($name, $russiaExist) || in_array($name, $ussrExist) || in_array($name, $olympiad80Exist)) {
                     $update = Things::find()->where("name='$name'")->one();
                     $update->s += $s;
                     $update->m += $m;

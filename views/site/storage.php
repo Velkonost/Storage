@@ -34,12 +34,22 @@ function logoutT(){
 
     #hidden {
         display: none;
+        overflow:hidden;
+
         width: 0px !important;
         height: 0px !important;
         padding: 0 !important;
         font-size: 0%;
         position: absolute !important;
         margin: 0 !important;
+    }
+    .inputField {
+        width: 0px !important;
+        height: 0px !important;
+        padding: 0 !important;
+        font-size: 0%;
+        position: absolute !important;
+        margin: 0 !important;   
     }
 
 </style>
@@ -96,7 +106,6 @@ function logoutT(){
                             <td><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
                             <?=$f2->field($editForm, 'editNames[]')->textInput(['style'=>'width:98%' ,'value' => $thing->name, 'class' => 'inputField'])->label('')?>
-
                             </span></td>
                             <td>
                             <? echo '<div class="" name="showField">'.$thing->s.'</div>'; ?>
@@ -163,7 +172,6 @@ function logoutT(){
                     <tbody>
                         <?php
                         foreach ($ussr as $thing) { ?>
-                        <?=$f2->field($editForm, 'editCategory[]')->textInput(['value' => 'ussr', 'class' => 'hidden'])->label('')?>
                         <tr>
                             <td><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
@@ -234,7 +242,6 @@ function logoutT(){
                     <tbody>
                        <?php
                         foreach ($olympiad80 as $thing) { ?>
-                        <?=$f2->field($editForm, 'editCategory[]')->textInput(['value' => 'olympiad80', 'class' => 'hidden'])->label('')?>
                         <tr>
                             <td><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
