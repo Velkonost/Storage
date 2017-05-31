@@ -12,7 +12,7 @@ use app\models\ContactForm;
 use app\models\Things;
 use app\models\AddThingForm;
 use app\models\FormAdd;
-
+use app\models\EditForm;
 
 
 class SiteController extends Controller
@@ -159,7 +159,6 @@ class SiteController extends Controller
 					$form->xxxl='0';
 					$form->price='0';					
                 }
-    		
             }
 		} else {
 			$name = '';
@@ -172,6 +171,35 @@ class SiteController extends Controller
 			$amount = '';
 			$price = '';
 		}
+
+        $editForm = new EditForm();
+        if (($editForm->load(Yii::$app->request->post())) && ($editForm->validate())){
+            $amountThings = Things::find()->all();
+            $amountRussia = count(Things::find()->where("category='russia'")->all());
+            // $amountUssr = count(Things::find()->where("category='ussr'")->all());
+            // $amountOlympiad80 = count(Things::find()->where("category='olympiad80'")->all());
+            
+            // $num = count($editForm->editXxxls);
+
+            Things::deleteAll();
+            for ($i = 0; $i < $amountRussia; $i++) {
+                // echo "$editForm->editNames[$i]<br>";
+                $post = new Things;
+                $post->name = Html::encode($editForm->editNames[$i]);
+                $post->s = Html::encode($editForm->editSs[$i]);
+                $post->m = Html::encode($editForm->editMs[$i]);
+                $post->l = Html::encode($editForm->editLs[$i]);
+                $post->xl = Html::encode($editForm->editXls[$i]);
+                $post->xxl = Html::encode($editForm->editXxls[$i]);
+                $post->xxxl = Html::encode($editForm->editXxxls[$i]);
+                $post->price = Html::encode($editForm->editPrices[$i]);
+                $post->category = 'russia';
+                $amount = ($post->s + $post->m + $post->l + $post->xl + $post->xxl + $post->xxxl);
+                $post->amount = $amount; 
+
+                $post->save();
+            }
+        }
 
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
@@ -186,6 +214,7 @@ class SiteController extends Controller
             'ussrNames' => $ussrExist,
             'olympiad80Names' => $olympiad80Exist,
 			'form' => $form,
+            'editForm' => $editForm,
             'russiaAmount' => $russiaAmount,
             'ussrAmount' => $ussrAmount,
             'olympiad80Amount' => $olympiad80Amount
