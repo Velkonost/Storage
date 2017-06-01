@@ -112,7 +112,8 @@ class SiteController extends Controller
 
                 if ($name == NULL || $s == NULL || $m == NULL 
                     || $l == NULL || $xl == NULL || $xxl == NULL 
-                    || $xxxl == NULL || $price == NULL) continue;
+                    || $xxxl == NULL || $price == NULL
+                    || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
                 
                 if(in_array($name, $russiaExist) || in_array($name, $ussrExist) || in_array($name, $olympiad80Exist)) {
                     $update = Things::find()->where("name='$name'")->one();
