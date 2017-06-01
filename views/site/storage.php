@@ -43,6 +43,19 @@ function logoutT(){
         position: absolute !important;
         margin: 0 !important;
     }
+    .form-group {
+        
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        vertical-align: middle;
+        display: inline-block;
+
+    }
+    div[name='showField'] {
+        display: inline-block;
+    }
+    
 
 </style>
     <div class="wrapper">
@@ -57,13 +70,11 @@ function logoutT(){
                         <button style = "margin-top:5%" name="button" id="inventar">Инвентаризация</button>
 					</div>
 					<div class="exit">
-						<a onclick = "<?php Yii::$app->user->logout();//ТУТА ДОДЕЛАТЬ ?>" href="index.php" title="">
+						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
 							<span color="red">Выход</span>
 								<img src="img/exit.png" alt="" />
 						</a>
-					</div>
-					
-
+					</div>	
         </div>
         <div class="clear"></div>
     
@@ -346,17 +357,14 @@ function logoutT(){
     <script>
     var open = false;
 
-   
-
     $(function() {
 
         var show = []; var hide = [];
 
         show = Array.from(document.getElementsByClassName('inputField'));
-        console.log(show);
+
         show.forEach(function(entry) {
             entry.setAttribute('class', 'hidden');
-            entry.setAttribute('height', '0%');
         });
 
         $('#inventar').click(function(event) {

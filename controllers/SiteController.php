@@ -129,36 +129,36 @@ class SiteController extends Controller
 
                     $update->save();
 					
-					$form->name='0';
-					$form->s='0';
-					$form->m='0';
-					$form->l='0';
-					$form->xl='0';
-					$form->xxl='0';
-					$form->xxxl='0';
-					$form->price='0';
+					$form->name = '0';
+					$form->s = '0';
+					$form->m = '0';
+					$form->l = '0';
+					$form->xl = '0';
+					$form->xxl = '0';
+					$form->xxxl = '0';
+					$form->price = '0';
 
                 } else {
-                    $post=new Things;
-                    $post->name=$name;
-                    $post->s=$s;
-                    $post->m=$m;
-                    $post->l=$l;
-                    $post->xl=$xl;
-                    $post->xxl=$xxl;
-                    $post->xxxl=$xxxl;
-                    $post->amount=$s+$m+$l+$xl+$xl+$xxl+$xxxl;
-                    $post->price=$price;
-                    $post->category=$dropDownList;
+                    $post = new Things;
+                    $post->name = $name;
+                    $post->s = $s;
+                    $post->m = $m;
+                    $post->l = $l;
+                    $post->xl = $xl;
+                    $post->xxl = $xxl;
+                    $post->xxxl = $xxxl;
+                    $post->amount = $s + $m + $l + $xl + $xl + $xxl + $xxxl;
+                    $post->price = $price;
+                    $post->category = $dropDownList;
                     $post->save(); 
-					$form->name='0';
-					$form->s='0';
-					$form->m='0';
-					$form->l='0';
-					$form->xl='0';
-					$form->xxl='0';
-					$form->xxxl='0';
-					$form->price='0';					
+					$form->name = '0';
+					$form->s = '0';
+					$form->m = '0';
+					$form->l = '0';
+					$form->xl = '0';
+					$form->xxl = '0';
+					$form->xxxl = '0';
+					$form->price = '0';					
                 }
             }
 		} else {
