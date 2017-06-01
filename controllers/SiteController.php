@@ -282,9 +282,12 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-       /* if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }*/
+		if (Yii::$app->getRequest()->getCookies()->has('cook')){
+			Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+		}
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+        }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {

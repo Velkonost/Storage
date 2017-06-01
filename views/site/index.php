@@ -21,6 +21,9 @@ $this->title = 'Storage';
 if(isset($_GET['log'])){
 	Yii::$app->response->cookies->remove('cook');
 }
+if (Yii::$app->getRequest()->getCookies()->has('cook')){
+			Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+		}
 ?>
 <div class="site-index">
 	<div class="body-content">
