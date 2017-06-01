@@ -20,6 +20,13 @@ function logoutT(){
 	Yii::$app->response->redirect('index.php');
 }
 ?>
+<script>
+	setInterval(request, 5000);
+</script>
+<script> function request(){<?php
+	if (!Yii::$app->getRequest()->getCookies()->has('cook')){
+		Yii::$app->response->redirect('index.php');
+}?>}</script>
 
 <style type="text/css">
     table {width: 900px;}
@@ -297,7 +304,7 @@ function logoutT(){
 	
         <div class="spaceWrapper">
             <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
-				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;float:left;margin-left: -150%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
+				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -150%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
 			
             <button name="button_close" id="close">X</button>
