@@ -282,14 +282,18 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+       /* if (!Yii::$app->user->isGuest) {
             return $this->goHome();
-        }
+        }*/
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+			if (!isset($_COOKIE['cook'])){
+			//	Yii::app()->request->cookies['cook'] = new CHttpCookie('cook', 'cook');
+			}
+           // Yii::$app->response->redirect('index.php?r=site%2Fstorage');
         }
+		
         return $this->render('login', [
             'model' => $model
         ]);

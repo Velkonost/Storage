@@ -18,7 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 $this->title = 'Storage';
-
+if(isset($_GET['log'])){
+	Yii::$app->response->cookies->remove('cook');
+}
 ?>
 <div class="site-index">
 	<div class="body-content">

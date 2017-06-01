@@ -13,16 +13,21 @@ $this->registerCssFile('css/style.css');
 
 $cookies = Yii::$app->request->cookies;
 $n = 1;
-if (!$cookies->has('cook')){
-	Yii::$app->response->redirect('index.php');
-}
+
 
 function logoutT(){
 	Yii::$app->response->cookies->remove('cook');
-	
+	Yii::$app->response->redirect('index.php');
 }
-
 ?>
+<script>
+	setInterval(request, 5000);
+</script>
+<script> function request(){<?php
+	if (!Yii::$app->getRequest()->getCookies()->has('cook')){
+		Yii::$app->response->redirect('index.php');
+}?>}</script>
+
 <style type="text/css">
     table {width: 900px;}
     thead>tr>td:not(:nth-child(1)) {
@@ -70,7 +75,7 @@ function logoutT(){
                         <button style = "margin-top:5%" name="button" id="inventar">Инвентаризация</button>
 					</div>
 					<div class="exit">
-						<a onclick = "<?php Yii::$app->user->logout(); ?>" href="index.php" title="">
+						<a onclick = 'return location.href = "<?php Yii::$app->user->logout();?>"' href="index.php?log=true" title="">
 							<span color="red">Выход</span>
 								<img src="img/exit.png" alt="" />
 						</a>
