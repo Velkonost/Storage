@@ -8,10 +8,6 @@ use yii\helpers;
 use yii\web\helpers\CHtml;
 
 $this->title = 'Storage';
-echo "11111";
-foreach ( $something as $thing ){
-	echo $thing;
-}
 
 $this->registerCssFile('css/style.css');
 

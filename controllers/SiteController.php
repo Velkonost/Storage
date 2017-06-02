@@ -10,11 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
-<<<<<<< HEAD
 use app\models\WpPostmeta;
-=======
-use app\models\Wp_postmeta;
->>>>>>> origin/master
 use app\models\AddThingForm;
 use app\models\FormAdd;
 use app\models\EditForm;
@@ -244,9 +240,7 @@ class SiteController extends Controller
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
-	//	$something = Wp_postmeta::find()->where("meta_key='sizes'")->all();
 		
-		$something = Yii::$app->db2->createCommand("SELECT meta_value FROM wp_postmeta WHERE meta_key='sizes'")->queryAll();
 
 		return $this->render('storage', [
     		'russia' => $russia,
@@ -259,8 +253,7 @@ class SiteController extends Controller
             'editForm' => $editForm,
             'russiaAmount' => $russiaAmount,
             'ussrAmount' => $ussrAmount,
-            'olympiad80Amount' => $olympiad80Amount,
-			'something' => $something
+            'olympiad80Amount' => $olympiad80Amount
 		]);
 
     }
