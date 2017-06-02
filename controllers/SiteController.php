@@ -123,7 +123,7 @@ class SiteController extends Controller
                     $update->xl += $xl;
                     $update->xxl += $xxl;
                     $update->xxxl += $xxxl;
-                    $update->amount += $s+$m+$l+$xl+$xl+$xxl+$xxxl;
+                    $update->amount += $s + $m + $l + $xl + $xxl + $xxxl;
                     $update->price += $price;
                     $update->category=$dropDownList;
 
@@ -147,7 +147,7 @@ class SiteController extends Controller
                     $post->xl = $xl;
                     $post->xxl = $xxl;
                     $post->xxxl = $xxxl;
-                    $post->amount = $s + $m + $l + $xl + $xl + $xxl + $xxxl;
+                    $post->amount = $s + $m + $l + $xl + $xxl + $xxxl;
                     $post->price = $price;
                     $post->category = $dropDownList;
                     $post->save(); 
