@@ -229,14 +229,12 @@ class SiteController extends Controller
             $amountRussia = count(Things::find()->where("category='russia'")->all());
             $amountUssr = count(Things::find()->where("category='ussr'")->all());
             $amountOlympiad80 = count(Things::find()->where("category='olympiad80'")->all());
-            
-            // $num = count($editForm->editXxxls);
 
             Things::deleteAll();
             for ($i = 0; $i < $amountRussia; $i++) { // tut
                 
                 $post = new Things;
-				$post->article = Html::encode($editForm->Editarticle[$i]);
+				$post->article = Html::encode($editForm->editArticle[$i]);
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
                 $post->m = Html::encode($editForm->editMs[$i]);
@@ -253,7 +251,7 @@ class SiteController extends Controller
             }
             for ($i = $amountRussia; $i < ($amountRussia + $amountUssr); $i++) {
                 $post = new Things;
-				$post->article = Html::encode($editForm->Editarticle[$i]);
+				$post->article = Html::encode($editForm->editArticle[$i]);
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
                 $post->m = Html::encode($editForm->editMs[$i]);

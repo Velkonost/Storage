@@ -12,7 +12,7 @@
 		public function rules(){
 			return [
 				// username and password are both required
-				[['editNames', 'editSs', 'editMs', 'editLs', 'editXls', 'editXxls', 'editXxxls', 'editPrices'], 'required', message => ''],
+				[['editNames', 'editSs', 'editMs', 'editLs', 'editXls', 'editXxls', 'editXxxls', 'editPrices', 'editArticle'], 'required', message => ''],
 				// rememberMe must be a boolean value
 				// ['names', 'default', message => ''],
 				// ['ss', 'number', message => ''],

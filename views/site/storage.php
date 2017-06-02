@@ -91,6 +91,7 @@ function logoutT(){
                 <table name="russiaContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
+                            <td style="text-align: center"><span>Артикул</span></td>
                             <td><span>Название</span></td>
                             <td>S</td>
                             <td>M</td>
@@ -108,6 +109,10 @@ function logoutT(){
                         
                         <tr>
                             <td><span>
+                            <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->article.'</div>'; ?>
+                            <?=$f2->field($editForm, 'editArticle[]')->textInput(['style'=>'width:98%' ,'value' => $thing->article, 'class' => 'inputField'])->label('')?>
+                            </span></td>
+                            <td style="background-color: #f7f6e7; width: 25%"><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
                             <?=$f2->field($editForm, 'editNames[]')->textInput(['style'=>'width:98%' ,'value' => $thing->name, 'class' => 'inputField'])->label('')?>
                             </span></td>
@@ -162,7 +167,8 @@ function logoutT(){
                <table name="ussrContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;"> 
                     <thead>
                         <tr>
-                            <td><span>Название</span></td>
+                            <td style="text-align: center"><span>Артикул</span></td>
+                            <td><span>Название</span></td>                            
                             <td>S</td>
                             <td>M</td>
                             <td>L</td>
@@ -178,6 +184,10 @@ function logoutT(){
                         foreach ($ussr as $thing) { ?>
                         <tr>
                             <td><span>
+                            <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->article.'</div>'; ?>
+                            <?=$f2->field($editForm, 'editArticle[]')->textInput(['style'=>'width:98%' ,'value' => $thing->article, 'class' => 'inputField'])->label('')?>
+                            </span></td>
+                            <td style="background-color: #f7f6e7; width: 25%"><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
                             <?=$f2->field($editForm, 'editNames[]')->textInput(['style'=>'width:98%' ,'value' => $thing->name, 'class' => 'inputField'])->label('')?>
                             </span></td>
@@ -232,6 +242,7 @@ function logoutT(){
                 <table name="olympiad80Content" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
+                            <td style="text-align: center"><span>Артикул</span></td>
                             <td><span>Название</span></td>
                             <td>S</td>
                             <td>M</td>
@@ -248,6 +259,10 @@ function logoutT(){
                         foreach ($olympiad80 as $thing) { ?>
                         <tr>
                             <td><span>
+                            <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->article.'</div>'; ?>
+                            <?=$f2->field($editForm, 'editArticle[]')->textInput(['style'=>'width:98%' ,'value' => $thing->article, 'class' => 'inputField'])->label('')?>
+                            </span></td>
+                            <td style="background-color: #f7f6e7; width: 25%"><span>
                             <? echo '<div class="" name="showField" style="margin-left:5%">'.$thing->name.'</div>'; ?>
                             <?=$f2->field($editForm, 'editNames[]')->textInput(['style'=>'width:98%' ,'value' => $thing->name, 'class' => 'inputField'])->label('')?>
                             </span></td>
