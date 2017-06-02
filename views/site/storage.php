@@ -30,12 +30,20 @@ function logoutT(){
 
 <style type="text/css">
     table {width: 900px;}
-    thead>tr>td:not(:nth-child(1)) {
-        width: 60px;
+    thead>tr>td:not(:nth-child(2)) {
+        width: 10%;
         height: 50px;
         margin: 0px;
         padding: 0px;
     }
+	thead>tr>td:not(:nth-child(1)) {
+        width: 10%;
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+    }
+	 
+
 
     #hidden {
         display: none;
@@ -313,7 +321,8 @@ function logoutT(){
                         <table class="Russia" style="border-collapse: separate; border-spacing: 1px;">
                             <thead>
                                 <tr>
-                                    <td><span>Название</span></td>
+                                    <span><td>Артикул</td></span>
+                                    <td>Название</td>
                                     <td>S</td>
                                     <td>M</td>
                                     <td>L</td>
@@ -337,6 +346,7 @@ function logoutT(){
                                     <?php } ?>
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
+											<td><?=$f->field($form, 'artikul[]')->textInput(['style'=>'width:95%'])->label('');?></td>
 											<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>

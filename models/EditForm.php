@@ -7,7 +7,7 @@
 	class EditForm extends Model
 	{
 		public $editNames = [], $editAmounts = [];
-		public $editCategory = [], $editSs = [], $editMs = [], $editLs = [], $editXls = [], $editXxls = [], $editXxxls = [], $editPrices = [];
+		public $editCategory = [], $editSs = [], $editMs = [], $editLs = [], $editXls = [], $editXxls = [], $editXxxls = [], $editPrices = [], $editArtikul = [];
 		
 		public function rules(){
 			return [

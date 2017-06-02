@@ -7,7 +7,7 @@
 	class FormAdd extends Model
 	{
 		public $name, $m, $s, $l, $xl, $xxl, $xxxl, $price, $dropDownList;
-		public $names = [], $ss = [], $ms = [], $ls = [], $xls = [], $xxls = [], $xxxls = [], $prices = [];
+		public $names = [], $ss = [], $ms = [], $ls = [], $xls = [], $xxls = [], $xxxls = [], $prices = [], $artikul = [];
 		
 		public function rules(){
 			return [
@@ -22,6 +22,7 @@
 				['xxl', 'number', message => ''],
 				['xxxl', 'number', message => ''],
 				['price', 'number', message => ''],
+				['artikul', 'default', message => ''],
 				['dropDownList','default', message=>'']
 			];
 		}
