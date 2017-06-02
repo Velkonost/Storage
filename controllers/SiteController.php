@@ -84,18 +84,18 @@ class SiteController extends Controller
         $russiaAmount = 0; $ussrAmount = 0; $olympiad80Amount = 0;
 
         foreach ($russiaNames as $key) {
-            array_push($russiaExist, $key->artikul);
+            array_push($russiaExist, $key->acticle);
             $russiaAmount += $key->amount;
         }
 
         foreach ($ussrNames as $key) {
-            array_push($ussrExist, $key->artikul);
+            array_push($ussrExist, $key->acticle);
             $ussrAmount += $key->amount;
 
         }
 
         foreach ($olympiad80Names as $key) {
-            array_push($olympiad80Exist, $key->artikul);
+            array_push($olympiad80Exist, $key->acticle);
             $olympiad80Amount += $key->amount;
         }
 
@@ -113,7 +113,7 @@ class SiteController extends Controller
     			$xxl = Html::encode($form->xxls[$i]);
     			$xxxl = Html::encode($form->xxxls[$i]);
     			$price = Html::encode($form->prices[$i]);
-    			$artikul = Html::encode($form->artikul[$i]);
+    			$acticle = Html::encode($form->acticle[$i]);
     			$dropDownList = Html::encode($form->dropDownList);
 
                 if ($name == NULL || $s == NULL || $m == NULL 
@@ -121,8 +121,8 @@ class SiteController extends Controller
                     || $xxxl == NULL || $price == NULL
                     || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
                 
-                if(in_array($artikul, $russiaExist) || in_array($artikul, $ussrExist) || in_array($artikul, $olympiad80Exist)) { //tut
-					$update = Things::find()->where("artikul='$artikul'")->one();
+                if(in_array($acticle, $russiaExist) || in_array($acticle, $ussrExist) || in_array($acticle, $olympiad80Exist)) { //tut
+					$update = Things::find()->where("acticle='$acticle'")->one();
                     $update->s += $s;
                     $update->m += $m;
                     $update->l += $l;
@@ -143,7 +143,7 @@ class SiteController extends Controller
 					$form->xxl = '0';
 					$form->xxxl = '0';
 					$form->price = '0';
-					$form->artikul = '';
+					$form->acticle = '';
 					$getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();
 					$ids = [];
 					foreach ( $getAllSizes as $thing){
@@ -165,7 +165,7 @@ class SiteController extends Controller
                 } else { // tut
                     $post = new Things;
                     $post->name = $name;
-                    $post->artikul = $artikul;
+                    $post->acticle = $acticle;
                     $post->s = $s;
                     $post->m = $m;
                     $post->l = $l;
@@ -184,7 +184,7 @@ class SiteController extends Controller
 					$form->xxl = '0';
 					$form->xxxl = '0';
 					$form->price = '0';	
-					$form->artikul = '';	
+					$form->acticle = '';	
 					
 					$getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();
 					$ids = [];
@@ -220,7 +220,7 @@ class SiteController extends Controller
 			$xxxl = '';
 			$amount = '';
 			$price = '';
-			$artikul = '';
+			$acticle = '';
 		}
 
         $editForm = new EditForm();
@@ -236,7 +236,7 @@ class SiteController extends Controller
             for ($i = 0; $i < $amountRussia; $i++) { // tut
                 
                 $post = new Things;
-				$post->artikul = Html::encode($editForm->EditArtikul[$i]);
+				$post->acticle = Html::encode($editForm->Editacticle[$i]);
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
                 $post->m = Html::encode($editForm->editMs[$i]);
@@ -253,7 +253,7 @@ class SiteController extends Controller
             }
             for ($i = $amountRussia; $i < ($amountRussia + $amountUssr); $i++) {
                 $post = new Things;
-				$post->artikul = Html::encode($editForm->EditArtikul[$i]);
+				$post->acticle = Html::encode($editForm->Editacticle[$i]);
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
                 $post->m = Html::encode($editForm->editMs[$i]);
@@ -270,7 +270,7 @@ class SiteController extends Controller
             }
             for ($i = ($amountUssr + $amountRussia); $i < ($amountRussia + $amountUssr + $amountOlympiad80); $i++) {
                 $post = new Things;
-				$post->artikul = Html::encode($editForm->EditArtikul[$i]);
+				$post->acticle = Html::encode($editForm->EditActicle[$i]);
                 $post->name = Html::encode($editForm->editNames[$i]);
                 $post->s = Html::encode($editForm->editSs[$i]);
                 $post->m = Html::encode($editForm->editMs[$i]);
