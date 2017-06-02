@@ -304,7 +304,7 @@ function logoutT(){
 	
         <div class="spaceWrapper">
             <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
-				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -150%; margin-top: -21%','options' => ['Россия'=>['selected'=>true]]])->label('');?>
+				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -300%;display:inline-block;','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
 			
             <button name="button_close" id="close">X</button>
