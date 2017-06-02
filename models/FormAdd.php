@@ -22,7 +22,7 @@
 				['xxl', 'number', message => ''],
 				['xxxl', 'number', message => ''],
 				['price', 'number', message => ''],
-				['artikul', 'default', message => ''],
+				['article', 'default', message => ''],
 				['dropDownList','default', message=>'']
 			];
 		}
