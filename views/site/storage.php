@@ -346,7 +346,7 @@ function logoutT(){
                                     <?php } ?>
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'artikul[]')->textInput(['style'=>'width:95%'])->label('');?></td>
+											<td><?=$f->field($form, 'article[]')->textInput(['style'=>'width:95%'])->label('');?></td>
 											<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
