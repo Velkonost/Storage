@@ -68,7 +68,6 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
-
         $russiaNames = Things::find()->where("category='russia'")->all();
         $ussrNames = Things::find()->where("category='ussr'")->all();
         $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
@@ -159,7 +158,9 @@ class SiteController extends Controller
 					$form->xl = '0';
 					$form->xxl = '0';
 					$form->xxxl = '0';
-					$form->price = '0';					
+					$form->price = '0';	
+
+                    $getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();				
                 }
             }
 		} else {
