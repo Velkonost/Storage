@@ -37,8 +37,13 @@ $config = [
                 ],
             ],
         ],
+<<<<<<< HEAD
         'db' => require(__DIR__ . '/db.php'),    
         'db2' => require(__DIR__ . '/db2.php'),
+=======
+        'db' => require(__DIR__ . '/db.php'),
+		'db2' => require(__DIR__ . '/db2.php'),
+>>>>>>> origin/master
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
