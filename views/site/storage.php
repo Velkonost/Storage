@@ -30,19 +30,7 @@ function logoutT(){
 
 <style type="text/css">
     table {width: 900px;}
-    thead>tr>td:not(:nth-child(2)) {
-        width: 10%;
-        height: 50px;
-        margin: 0px;
-        padding: 0px;
-    }
-	thead>tr>td:not(:nth-child(1)) {
-        width: 10%;
-        height: 50px;
-        margin: 0px;
-        padding: 0px;
-    }
-	 
+
 
 
     #hidden {
@@ -321,8 +309,8 @@ function logoutT(){
                         <table class="Russia" style="border-collapse: separate; border-spacing: 1px;">
                             <thead>
                                 <tr>
-                                    <span><td>Артикул</td></span>
-                                    <td>Название</td>
+                                    <td style="text-align: center;  width: 25%"><span>Артикул</span></td>
+                                    <td style="width: 25%">Название</td>
                                     <td>S</td>
                                     <td>M</td>
                                     <td>L</td>
@@ -346,8 +334,8 @@ function logoutT(){
                                     <?php } ?>
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'article[]')->textInput(['style'=>'width:95%'])->label('');?></td>
-											<td><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
+											<td><?=$f->field($form, 'article[]')->textInput(['style'=>'margin-left:20%'])->label('');?></td>
+											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->textInput(['style'=>'width:95%', 'list'=>'names'])->label('');?></td>
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>

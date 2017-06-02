@@ -156,7 +156,7 @@ class SiteController extends Controller
 					}
 					foreach ($ids as $thing)
 					{
-						echo $thing.'<br/>';
+						// echo $thing.'<br/>';
 						/*if(in_array($thing, $ids2)){
 							echo $thing.'<br/>';
 						}*/
