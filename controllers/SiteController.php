@@ -10,7 +10,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
-use app\models\WpPostmeta;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 use app\models\EditForm;
@@ -69,8 +68,6 @@ class SiteController extends Controller
     public function actionStorage()
     {
 
-        $sm = WpPostmeta::find()->where("meta_key='sizes'")->all();
-        echo $sm;
         $russiaNames = Things::find()->where("category='russia'")->all();
         $ussrNames = Things::find()->where("category='ussr'")->all();
         $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
@@ -118,7 +115,7 @@ class SiteController extends Controller
                     || $xxxl == NULL || $price == NULL
                     || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
                 
-                if(in_array($name, $russiaExist) || in_array($name, $ussrExist) || in_array($name, $olympiad80Exist)) { // tut
+                if(in_array($name, $russiaExist) || in_array($name, $ussrExist) || in_array($name, $olympiad80Exist)) {
                     $update = Things::find()->where("name='$name'")->one();
                     $update->s += $s;
                     $update->m += $m;
@@ -141,7 +138,7 @@ class SiteController extends Controller
 					$form->xxxl = '0';
 					$form->price = '0';
 
-                } else { // tut
+                } else {
                     $post = new Things;
                     $post->name = $name;
                     $post->s = $s;
@@ -186,7 +183,7 @@ class SiteController extends Controller
             // $num = count($editForm->editXxxls);
 
             Things::deleteAll();
-            for ($i = 0; $i < $amountRussia; $i++) { //tut
+            for ($i = 0; $i < $amountRussia; $i++) {
                 
                 $post = new Things;
                 $post->name = Html::encode($editForm->editNames[$i]);
