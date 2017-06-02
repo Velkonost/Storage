@@ -159,8 +159,28 @@ class SiteController extends Controller
 					$form->xxl = '0';
 					$form->xxxl = '0';
 					$form->price = '0';	
+					
+					$getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();
+					$ids = [];
+					foreach ( $getAllSizes as $thing){
+						array_push($ids, $thing->post_id);
+					}
+					$getAllNames = WpPosts::find()->where("post_name='$name'")->all();
+					$ids2 = [];
+					foreach ( $getAllNames as $thing){
+						array_push($ids2, $thing->ID);
+					}
+					foreach ($ids2 as $thing)
+					{
+						if(in_array($ids, $thing)){
+							echo $thing;
+						}
+					}
+					
+					
+					
+					
 
-                    $getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();				
                 }
             }
 		} else {
@@ -239,7 +259,6 @@ class SiteController extends Controller
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
-		
 
 		return $this->render('storage', [
     		'russia' => $russia,
