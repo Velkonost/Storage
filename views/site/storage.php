@@ -356,8 +356,9 @@ function logoutT(){
 									
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['style'=>'margin-left:50%','options' => [], 'onChange'=>'funcChange(this.value);'])-> label('');?></td>
-											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['style'=>[''], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
+											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i",'style'=>['margin-left:20%'], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
+											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>['margin-left:20%'], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
+
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
@@ -380,9 +381,40 @@ function logoutT(){
     </div>
 
     <script>
-    var open = false;
-	
-	
+
+        $('#selectName0').on("change", function()
+        {
+            var selectName = document.getElementById('selectName0');
+            $('#selectArticle0').val(selectName.options.selectedIndex);
+        });
+        $('#selectArticle0').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle0');
+            $('#selectName0').val(selectArticle.options.selectedIndex);
+        }); 
+
+        $('#selectName1').on("change", function()
+        {
+            var selectName = document.getElementById('selectName1');
+            $('#selectArticle1').val(selectName.options.selectedIndex);
+        });
+        $('#selectArticle1').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle1');
+            $('#selectName1').val(selectArticle.options.selectedIndex);
+        });  
+
+        $('#selectName2').on("change", function()
+        {
+            var selectName = document.getElementById('selectName2');
+            $('#selectArticle2').val(selectName.options.selectedIndex);
+        });
+        $('#selectArticle2').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle2');
+            $('#selectName2').val(selectArticle.options.selectedIndex);
+        });   
+  
     $(function() {
 
         var show = []; var hide = [];

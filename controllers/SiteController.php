@@ -315,29 +315,23 @@ class SiteController extends Controller
                 $newSizes = [];
 
 
-                 if ($editForm->editSs[$i] > 0) {
+                if ($editForm->editSs[$i] > 0) {
                     array_push($newSizes, 1);
-
                 } 
                 if ($editForm->editMs[$i] > 0) {
                     array_push($newSizes, 2);
-                    
                 }
                 if ($editForm->editLs[$i] > 0) {
                     array_push($newSizes, 3);
-                    
                 }
                 if ($editForm->editXls[$i] > 0) {
                     array_push($newSizes, 4);
-                    
                 }
                 if ($editForm->editXxls[$i] > 0) {
                     array_push($newSizes, 5);
-
                 }
                 if ($editForm->editXxxls[$i] > 0) {
                     array_push($newSizes, 6);
-
                 }
 
                 $sizes->meta_value = serialize($newSizes);
@@ -373,27 +367,21 @@ class SiteController extends Controller
 
                 if ($editForm->editSs[$i] > 0) {
                     array_push($newSizes, 1);
-                   
                 } 
                 if ($editForm->editMs[$i] > 0) {
                     array_push($newSizes, 2);
-                   
                 }
                 if ($editForm->editLs[$i] > 0) {
                     array_push($newSizes, 3);
-                   
                 }
                 if ($editForm->editXls[$i] > 0) {
                     array_push($newSizes, 4);
-                   
                 }
                 if ($editForm->editXxls[$i] > 0) {
                     array_push($newSizes, 5);
-                   
                 }
                 if ($editForm->editXxxls[$i] > 0) {
                     array_push($newSizes, 6);
-                   
                 }
 
                 $sizes->meta_value = serialize($newSizes);
