@@ -120,7 +120,7 @@ class SiteController extends Controller
                     || $l == NULL || $xl == NULL || $xxl == NULL || $xxxl == NULL || $price == NULL
                     || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
                 
-                echo $article;
+                
                 if(in_array($article, $russiaExist) || in_array($article, $ussrExist) || in_array($article, $olympiad80Exist)) { //tut
 					$update = Things::find()->where("article='$article'")->one();
                     $update->name = $name;
@@ -277,7 +277,7 @@ class SiteController extends Controller
                 }
 
                 $sizes->meta_value = serialize($newSizes);
-                // echo $article.'<br>'.count($newSizes);
+                
                 $sizes->save();
 
             }
