@@ -356,8 +356,8 @@ function logoutT(){
 									
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i", 'style'=>'margin-left:50%','options' => ['0'=>['selected'=>true]]])->label('');?></td>
-											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>['margin-left:20%'], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
+											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i", 'style'=>'width:100%;margin-left:50%','options' => ['0'=>['selected'=>true]]])->label('');?></td>
+											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>' width:100%', 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
 
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
