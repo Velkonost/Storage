@@ -284,7 +284,13 @@ class SiteController extends Controller
                 $post->save();
             }
         }
-
+		
+		$allarticles = [];
+		$artics = Things::find()->all();
+		foreach($artics as $key){
+			array_push($allarticles, $key->article);
+		}
+		
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
@@ -300,7 +306,8 @@ class SiteController extends Controller
             'editForm' => $editForm,
             'russiaAmount' => $russiaAmount,
             'ussrAmount' => $ussrAmount,
-            'olympiad80Amount' => $olympiad80Amount
+            'olympiad80Amount' => $olympiad80Amount,
+			'allarticles' => $allarticles
 		]);
 
     }
