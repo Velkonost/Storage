@@ -116,11 +116,11 @@ class SiteController extends Controller
     			$article = Html::encode($form->article[$i]);
     			$dropDownList = Html::encode($form->dropDownList);
 
-                if ($name == NULL || $s == NULL || $m == NULL 
-                    || $l == NULL || $xl == NULL || $xxl == NULL 
-                    || $xxxl == NULL || $price == NULL
+                if ($article == NULL || $name == NULL || $s == NULL || $m == NULL 
+                    || $l == NULL || $xl == NULL || $xxl == NULL || $xxxl == NULL || $price == NULL
                     || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
                 
+                echo $article;
                 if(in_array($article, $russiaExist) || in_array($article, $ussrExist) || in_array($article, $olympiad80Exist)) { //tut
 					$update = Things::find()->where("article='$article'")->one();
                     $update->name = $name;
@@ -153,32 +153,24 @@ class SiteController extends Controller
                     $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
 
                     $newSizes = [];
-                    $i = 1;
 
                     if ($s > 0) {
                         array_push($newSizes, 1);
-
-                        $i ++;
                     } 
                     if ($m > 0) {
                         array_push($newSizes, 2);
-                        $i ++;
                     }
                     if ($l > 0) {
                         array_push($newSizes, 3);
-                        $i ++;
                     }
                     if ($xl > 0) {
                         array_push($newSizes, 4);
-                        $i ++;
                     }
                     if ($xxl > 0) {
                         array_push($newSizes, 5);
-                        $i ++;
                     }
                     if ($xxxl > 0) {
                         array_push($newSizes, 6);
-                        $i ++;
                     }
 
                     $sizes->meta_value = serialize($newSizes);
@@ -285,7 +277,7 @@ class SiteController extends Controller
                 }
 
                 $sizes->meta_value = serialize($newSizes);
-                echo $article.'<br>'.count($newSizes);
+                // echo $article.'<br>'.count($newSizes);
                 $sizes->save();
 
             }
@@ -393,7 +385,7 @@ class SiteController extends Controller
 		$allarticles = [];
 		$artics = Things::find()->all();
 		foreach($artics as $key){
-			array_push($allarticles, $key->article);
+			$allarticles[$key->article] = $key->article;
 		}
 		
         $russia = Things::find()->where("category='russia'")->all();
@@ -402,7 +394,7 @@ class SiteController extends Controller
 		$allclths = Things::find()->all();
 		$allclothes = [];
 		foreach($allclths as $key){
-			array_push($allclothes, $key->name);
+			$allclothes[$key->name] = $key->name;
 		}
 		
 		

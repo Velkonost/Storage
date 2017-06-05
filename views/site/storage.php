@@ -341,17 +341,17 @@ function logoutT(){
 							<script>var names1 = [<?php foreach ($olympiad80Names as $name3){ echo '"'.$name3.'",';} ?>]</script>
                             <tbody class="hidden_table">
 									
-									<?php $list = [];$names1 = []; $names2 = []; $names3 = [];?>
+									<!-- <?php $list = []; $names1 = []; $names2 = []; $names3 = [];?>
 									<datalist id="names">
                                     <?php foreach ($russiaNames as $name1) { array_push($list, $name1); array_push($names1, $name1); ?> 
-                                        <option value=<? echo $name1; ?>>
+                                        <option value=<? echo $name1; ?>></option>
                                     <?php } ?>
-                                    <?php foreach ($ussrNames as $name2) {  array_push($list, $name2);array_push($names2, $name2); ?>
-                                        <option value=<? echo $name2; ?>>
+                                    <?php foreach ($ussrNames as $name2) { array_push($list, $name2);array_push($names2, $name2); ?>
+                                        <option value=<? echo $name2; ?>></option>
                                     <?php } ?>
-                                    <?php foreach ($olympiad80Names as $name3) {  array_push($list, $name3);array_push($names3, $name3);?>
-                                        <option value=<? echo $name3; ?>>
-                                    <?php } ?>
+                                    <?php foreach ($olympiad80Names as $name3) { array_push($list, $name3); array_push($names3, $name3);?>
+                                        <option value=<? echo $name3; ?>></option>
+                                    <?php } ?> -->
 									
 									
 								<?php for($i=0;$i<3; $i++){?>
@@ -382,41 +382,10 @@ function logoutT(){
 
     <script>
 
-        $('#selectName0').on("change", function()
-        {
-            var selectName = document.getElementById('selectName0');
-            $('#selectArticle0').val(selectName.options.selectedIndex);
-        });
-        $('#selectArticle0').on("change", function()
-        {
-            var selectArticle = document.getElementById('selectArticle0');
-            $('#selectName0').val(selectArticle.options.selectedIndex);
-        }); 
-
-        $('#selectName1').on("change", function()
-        {
-            var selectName = document.getElementById('selectName1');
-            $('#selectArticle1').val(selectName.options.selectedIndex);
-        });
-        $('#selectArticle1').on("change", function()
-        {
-            var selectArticle = document.getElementById('selectArticle1');
-            $('#selectName1').val(selectArticle.options.selectedIndex);
-        });  
-
-        $('#selectName2').on("change", function()
-        {
-            var selectName = document.getElementById('selectName2');
-            $('#selectArticle2').val(selectName.options.selectedIndex);
-        });
-        $('#selectArticle2').on("change", function()
-        {
-            var selectArticle = document.getElementById('selectArticle2');
-            $('#selectName2').val(selectArticle.options.selectedIndex);
-        });   
   
     $(function() {
 
+        var open = false;
         var show = []; var hide = [];
 
         show = Array.from(document.getElementsByClassName('inputField'));
@@ -426,8 +395,6 @@ function logoutT(){
         });
 
         $('#inventar').click(function(event) {
-            
-
                 hide = Array.from(document.getElementsByName('showField'));
 
                 if (!open) {
@@ -438,7 +405,6 @@ function logoutT(){
                     show.forEach(function(entry) {
                         entry.setAttribute('class', 'inputField');
                         
-
                     });
 
                     document.getElementById('btnSave').setAttribute('class', '');
@@ -483,8 +449,43 @@ function logoutT(){
                 );
 
                 // open = true;
-            
         });
+
+
+        // $('#selectName0').on("change", function()
+        // {
+        //     var selectName = document.getElementById('selectName0');
+        //     var selectArticle = document.getElementById('selectArticle0');
+        //     console.log(selectArticle[selectName.options.selectedIndex]);
+        //     $('#selectArticle0').val(selectArticle[selectName.options.selectedIndex].value);
+        // });
+        // $('#selectArticle0').on("change", function()
+        // {
+        //     var selectArticle = document.getElementById('selectArticle0');
+        //     $('#selectName0').val(selectArticle.options.selectedIndex);
+        // }); 
+
+        // $('#selectName1').on("change", function()
+        // {
+        //     var selectName = document.getElementById('selectName1');
+        //     $('#selectArticle1').val(selectName.options.selectedIndex);
+        // });
+        // $('#selectArticle1').on("change", function()
+        // {
+        //     var selectArticle = document.getElementById('selectArticle1');
+        //     $('#selectName1').val(selectArticle.options.selectedIndex);
+        // });  
+
+        // $('#selectName2').on("change", function()
+        // {
+        //     var selectName = document.getElementById('selectName2');
+        //     $('#selectArticle2').val(selectName.options.selectedIndex);
+        // });
+        // $('#selectArticle2').on("change", function()
+        // {
+        //     var selectArticle = document.getElementById('selectArticle2');
+        //     $('#selectName2').val(selectArticle.options.selectedIndex);
+        // });   
     });
 
     </script>
