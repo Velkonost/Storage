@@ -154,22 +154,22 @@ class SiteController extends Controller
 
                     $newSizes = [];
 
-                    if ($s > 0) {
+                    if ($update->s > 0) {
                         array_push($newSizes, 1);
                     } 
-                    if ($m > 0) {
+                    if ($update->m > 0) {
                         array_push($newSizes, 2);
                     }
-                    if ($l > 0) {
+                    if ($update->l > 0) {
                         array_push($newSizes, 3);
                     }
-                    if ($xl > 0) {
+                    if ($update->xl > 0) {
                         array_push($newSizes, 4);
                     }
-                    if ($xxl > 0) {
+                    if ($update->xxl > 0) {
                         array_push($newSizes, 5);
                     }
-                    if ($xxxl > 0) {
+                    if ($update->xxxl > 0) {
                         array_push($newSizes, 6);
                     }
 
