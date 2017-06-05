@@ -336,25 +336,9 @@ function logoutT(){
                                 </tr>
                             </thead>
 							
-							<script>var names1 = [<?php foreach ($russiaNames as $name1){ echo '"'.$name1.'",';} ?>]</script>
-							<script>var names1 = [<?php foreach ($ussrNames as $name2){ echo '"'.$name2.'",';} ?>]</script>
-							<script>var names1 = [<?php foreach ($olympiad80Names as $name3){ echo '"'.$name3.'",';} ?>]</script>
                             <tbody class="hidden_table">
 									
-									<!-- <?php $list = []; $names1 = []; $names2 = []; $names3 = [];?>
-									<datalist id="names">
-                                    <?php foreach ($russiaNames as $name1) { array_push($list, $name1); array_push($names1, $name1); ?> 
-                                        <option value=<? echo $name1; ?>></option>
-                                    <?php } ?>
-                                    <?php foreach ($ussrNames as $name2) { array_push($list, $name2);array_push($names2, $name2); ?>
-                                        <option value=<? echo $name2; ?>></option>
-                                    <?php } ?>
-                                    <?php foreach ($olympiad80Names as $name3) { array_push($list, $name3); array_push($names3, $name3);?>
-                                        <option value=<? echo $name3; ?>></option>
-                                    <?php } ?> -->
-									
-									
-								<?php for($i=0;$i<3; $i++){?>
+								<?php for($i = 0; $i < 3; $i++){?>
 										<tr class='hidden-row'>
 											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i", 'style'=>'width:205px; margin-left:5px;','options' => ['0'=>['selected'=>true]]])->label('');?></td>
 											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>' width: 200px; margin-left:5px', 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
@@ -376,12 +360,11 @@ function logoutT(){
 			<?= Html::submitButton('Добавить', ['id'=>'future', 'name' => 'button_save']) ?>
 			<?php ActiveForm::end(); ?>
            <!-- <button name="row_add" id="add_row">+</button>-->
-            
         </div>
     </div>
 
-    <script>
 
+    <script>
   
     $(function() {
 
@@ -452,40 +435,40 @@ function logoutT(){
         });
 
 
-        // $('#selectName0').on("change", function()
-        // {
-        //     var selectName = document.getElementById('selectName0');
-        //     var selectArticle = document.getElementById('selectArticle0');
-        //     console.log(selectArticle[selectName.options.selectedIndex]);
-        //     $('#selectArticle0').val(selectArticle[selectName.options.selectedIndex].value);
-        // });
-        // $('#selectArticle0').on("change", function()
-        // {
-        //     var selectArticle = document.getElementById('selectArticle0');
-        //     $('#selectName0').val(selectArticle.options.selectedIndex);
-        // }); 
+        $('#selectName0').on("change", function()
+        {
+            var selectName = document.getElementById('selectName0');
+            var selectArticle = document.getElementById('selectArticle0');
+            console.log(selectArticle[selectName.options.selectedIndex]);
+            $('#selectArticle0').val(selectArticle[selectName.options.selectedIndex].value);
+        });
+        $('#selectArticle0').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle0');
+            $('#selectName0').val(selectArticle.options.selectedIndex);
+        }); 
 
-        // $('#selectName1').on("change", function()
-        // {
-        //     var selectName = document.getElementById('selectName1');
-        //     $('#selectArticle1').val(selectName.options.selectedIndex);
-        // });
-        // $('#selectArticle1').on("change", function()
-        // {
-        //     var selectArticle = document.getElementById('selectArticle1');
-        //     $('#selectName1').val(selectArticle.options.selectedIndex);
-        // });  
+        $('#selectName1').on("change", function()
+        {
+            var selectName = document.getElementById('selectName1');
+            $('#selectArticle1').val(selectName.options.selectedIndex);
+        });
+        $('#selectArticle1').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle1');
+            $('#selectName1').val(selectArticle.options.selectedIndex);
+        });  
 
-        // $('#selectName2').on("change", function()
-        // {
-        //     var selectName = document.getElementById('selectName2');
-        //     $('#selectArticle2').val(selectName.options.selectedIndex);
-        // });
-        // $('#selectArticle2').on("change", function()
-        // {
-        //     var selectArticle = document.getElementById('selectArticle2');
-        //     $('#selectName2').val(selectArticle.options.selectedIndex);
-        // });   
+        $('#selectName2').on("change", function()
+        {
+            var selectName = document.getElementById('selectName2');
+            $('#selectArticle2').val(selectName.options.selectedIndex);
+        });
+        $('#selectArticle2').on("change", function()
+        {
+            var selectArticle = document.getElementById('selectArticle2');
+            $('#selectName2').val(selectArticle.options.selectedIndex);
+        });   
     });
 
     </script>
