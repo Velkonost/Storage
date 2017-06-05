@@ -151,7 +151,7 @@ class SiteController extends Controller
                     $postId = $wpPosts->post_id;
                     
                     $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
-                    // echo $sizes->meta_value;
+
                     $newSizes = [];
                     $i = 1;
 
@@ -184,13 +184,6 @@ class SiteController extends Controller
                     $sizes->meta_value = serialize($newSizes);
                     $sizes->save();
 
-
-                    
-                    // echo count($newSizes);
-                    // foreach ($newSizes as $key ) {
-                    //     echo $key;
-                    // }
-
                 } else { // tut
                     $post = new Things;
                     $post->name = $name;
@@ -215,28 +208,6 @@ class SiteController extends Controller
 					$form->xxxl = '0';
 					$form->price = '0';	
 					$form->article = '';	
-					
-					$getAllSizes = WpPostmeta::find()->where("meta_key='sizes'")->all();
-					$ids = [];
-					foreach ( $getAllSizes as $thing){
-						array_push($ids, $thing->post_id);
-					}
-					$getAllNames = WpPosts::find()->where("post_title='$name'")->all();
-					$ids2 = [];
-					foreach ( $getAllNames as $thing){
-						array_push($ids2, $thing->ID);
-					}
-					foreach ($ids2 as $thing)
-					{
-						echo $thing;
-						if(in_array($ids, $thing)){
-							echo $thing;
-						}
-					}
-					
-					
-					
-					
 
                 }
             }
@@ -278,6 +249,45 @@ class SiteController extends Controller
                 $post->amount = $amount; 
 
                 $post->save();
+                $article = $editForm->editArticle[$i];
+
+                $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='$article') ")->one();
+                $postId = $wpPosts->post_id;
+                
+                $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+
+                $newSizes = [];
+                
+
+                if ($editForm->editSs[$i] > 0) {
+                    array_push($newSizes, 1);
+                
+                } 
+                if ($editForm->editMs[$i] > 0) {
+                    array_push($newSizes, 2);
+                
+                }
+                if ($editForm->editLs[$i] > 0) {
+                    array_push($newSizes, 3);
+                
+                }
+                if ($editForm->editXls[$i] > 0) {
+                    array_push($newSizes, 4);
+                
+                }
+                if ($editForm->editXxls[$i] > 0) {
+                    array_push($newSizes, 5);
+                
+                }
+                if ($editForm->editXxxls[$i] > 0) {
+                    array_push($newSizes, 6);
+                
+                }
+
+                $sizes->meta_value = serialize($newSizes);
+                echo $article.'<br>'.count($newSizes);
+                $sizes->save();
+
             }
             for ($i = $amountRussia; $i < ($amountRussia + $amountUssr); $i++) {
                 $post = new Things;
@@ -295,6 +305,44 @@ class SiteController extends Controller
                 $post->amount = $amount; 
 
                 $post->save();
+                $article = $editForm->editArticle[$i];
+
+                $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='$article') ")->one();
+                $postId = $wpPosts->post_id;
+                
+                $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+
+                $newSizes = [];
+
+
+                 if ($editForm->editSs[$i] > 0) {
+                    array_push($newSizes, 1);
+
+                } 
+                if ($editForm->editMs[$i] > 0) {
+                    array_push($newSizes, 2);
+                    
+                }
+                if ($editForm->editLs[$i] > 0) {
+                    array_push($newSizes, 3);
+                    
+                }
+                if ($editForm->editXls[$i] > 0) {
+                    array_push($newSizes, 4);
+                    
+                }
+                if ($editForm->editXxls[$i] > 0) {
+                    array_push($newSizes, 5);
+
+                }
+                if ($editForm->editXxxls[$i] > 0) {
+                    array_push($newSizes, 6);
+
+                }
+
+                $sizes->meta_value = serialize($newSizes);
+                $sizes->save();
+
             }
             for ($i = ($amountUssr + $amountRussia); $i < ($amountRussia + $amountUssr + $amountOlympiad80); $i++) {
                 $post = new Things;
@@ -312,6 +360,45 @@ class SiteController extends Controller
                 $post->amount = $amount; 
 
                 $post->save();
+
+                $article = $editForm->editArticle[$i];
+
+                $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='$article') ")->one();
+                $postId = $wpPosts->post_id;
+                
+                $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+
+                $newSizes = [];
+                $i = 1;
+
+                if ($editForm->editSs[$i] > 0) {
+                    array_push($newSizes, 1);
+                   
+                } 
+                if ($editForm->editMs[$i] > 0) {
+                    array_push($newSizes, 2);
+                   
+                }
+                if ($editForm->editLs[$i] > 0) {
+                    array_push($newSizes, 3);
+                   
+                }
+                if ($editForm->editXls[$i] > 0) {
+                    array_push($newSizes, 4);
+                   
+                }
+                if ($editForm->editXxls[$i] > 0) {
+                    array_push($newSizes, 5);
+                   
+                }
+                if ($editForm->editXxxls[$i] > 0) {
+                    array_push($newSizes, 6);
+                   
+                }
+
+                $sizes->meta_value = serialize($newSizes);
+                $sizes->save();
+
             }
         }
 
