@@ -335,25 +335,29 @@ function logoutT(){
                                     <td>цена</td>
                                 </tr>
                             </thead>
+							
+							<script>var names1 = [<?php foreach ($russiaNames as $name1){ echo '"'.$name1.'",';} ?>]</script>
+							<script>var names1 = [<?php foreach ($ussrNames as $name2){ echo '"'.$name2.'",';} ?>]</script>
+							<script>var names1 = [<?php foreach ($olympiad80Names as $name3){ echo '"'.$name3.'",';} ?>]</script>
                             <tbody class="hidden_table">
 									
-									<?php $list = [];?>
+									<?php $list = [];$names1 = []; $names2 = []; $names3 = [];?>
 									<datalist id="names">
-                                    <?php foreach ($russiaNames as $name1) { array_push($list, $name1); ?>
+                                    <?php foreach ($russiaNames as $name1) { array_push($list, $name1); array_push($names1, $name1); ?> 
                                         <option value=<? echo $name1; ?>>
                                     <?php } ?>
-                                    <?php foreach ($ussrNames as $name2) {  array_push($list, $name2); ?>
+                                    <?php foreach ($ussrNames as $name2) {  array_push($list, $name2);array_push($names2, $name2); ?>
                                         <option value=<? echo $name2; ?>>
                                     <?php } ?>
-                                    <?php foreach ($olympiad80Names as $name3) {  array_push($list, $name3);?>
+                                    <?php foreach ($olympiad80Names as $name3) {  array_push($list, $name3);array_push($names3, $name3);?>
                                         <option value=<? echo $name3; ?>>
                                     <?php } ?>
 									
+									
 								<?php for($i=0;$i<3; $i++){?>
 										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['style'=>['margin-left:20%'], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
-											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($list, ['style'=>['margin-left:20%'], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
-										
+											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['style'=>'margin-left:50%','options' => [], 'onChange'=>'funcChange(this.value);'])-> label('');?></td>
+											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['style'=>[''], 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
 											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
 											<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
@@ -377,7 +381,8 @@ function logoutT(){
 
     <script>
     var open = false;
-
+	
+	
     $(function() {
 
         var show = []; var hide = [];

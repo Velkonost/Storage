@@ -411,6 +411,13 @@ class SiteController extends Controller
         $russia = Things::find()->where("category='russia'")->all();
 		$ussr = Things::find()->where("category='ussr'")->all();
 		$olympiad80 = Things::find()->where("category='olympiad80'")->all();
+		$allclths = Things::find()->all();
+		$allclothes = [];
+		foreach($allclths as $key){
+			array_push($allclothes, $key->name);
+		}
+		
+		
 
 		return $this->render('storage', [
     		'russia' => $russia,
@@ -424,7 +431,8 @@ class SiteController extends Controller
             'russiaAmount' => $russiaAmount,
             'ussrAmount' => $ussrAmount,
             'olympiad80Amount' => $olympiad80Amount,
-			'allarticles' => $allarticles
+			'allarticles' => $allarticles,
+			'allclothes' => $allclothes
 		]);
 
     }
