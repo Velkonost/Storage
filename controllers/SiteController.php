@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
+use app\models\Meta;
 use app\models\WpPostmeta;
 use app\models\WpPosts;
 use app\models\AddThingForm;
@@ -78,6 +79,11 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
+
+        $russiaArmoring = Meta::find()->where("meta_key='russia_armoring'")->one()->meta_value;
+        $ussrArmoring = Meta::find()->where("meta_key='ussr_armoring'")->one()->meta_value;
+        $olympiadArmoring = Meta::find()->where("meta_key='olympiad_armoring'")->one()->meta_value;
+
         $russiaNames = Things::find()->where("category='russia'")->all();
         $ussrNames = Things::find()->where("category='ussr'")->all();
         $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
@@ -421,7 +427,10 @@ class SiteController extends Controller
             'ussrAmount' => $ussrAmount,
             'olympiad80Amount' => $olympiad80Amount,
 			'allarticles' => $allarticles,
-			'allclothes' => $allclothes
+			'allclothes' => $allclothes,
+            'russiaArmoring' => $russiaArmoring,
+            'ussrArmoring' => $ussrArmoring,
+            'olympiadArmoring' => $olympiadArmoring
 		]);
 
     }
