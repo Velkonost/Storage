@@ -17,7 +17,7 @@ $n = 1;
 
 function logoutT(){
 	Yii::$app->response->cookies->remove('cook');
-	Yii::$app->response->redirect('index.php');
+	Yii::$app->response->redirect('welcome');
 }
 ?>
 <script>
@@ -25,7 +25,7 @@ function logoutT(){
 </script>
 <script> function request(){<?php
 	if (!Yii::$app->getRequest()->getCookies()->has('cook')){
-		Yii::$app->response->redirect('index.php');
+		Yii::$app->response->redirect('welcome');
 }?>}</script>
 
 <style type="text/css">
@@ -62,7 +62,7 @@ function logoutT(){
     <div class="wrapper">
         <div class="header">
             <div class="logo">
-                <a href="https://sport-form.ru/" target="_blank"><img src="img/logo.png" alt="logo"></a>
+                <a href="https://sport-form.ru/" target="_blank"><img src="../web/img/logo.png" alt="logo"></a>
             </div>
 
 			         <div class="center" style="display: inline-block; width: 520px">
@@ -71,9 +71,9 @@ function logoutT(){
                         <button style = "margin-top:5%" name="button" id="inventar">Инвентаризация</button>
 					</div>
 					<div class="exit">
-						<a onclick = 'return location.href = "<?php Yii::$app->user->logout();?>"' href="index.php?log=true" title="">
+						<a onclick = 'return location.href = "<?php Yii::$app->user->logout();?>"' href="welcome?log=true" title="">
 							<span color="red">Выход</span>
-								<img src="img/exit.png" alt="" />
+								<img src="../web/img/exit.png" alt="" />
 						</a>
 					</div>	
         </div>
@@ -362,7 +362,6 @@ function logoutT(){
            <!-- <button name="row_add" id="add_row">+</button>-->
         </div>
     </div>
-
 
     <script>
   

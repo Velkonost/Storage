@@ -11,8 +11,6 @@ class ComposerStaticInitfdc425f9ef0b0561317aecf1e84d8ea7
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '36795dc0cc588020fda3680dffb905a4' => __DIR__ . '/..' . '/codeception/base/shim.php',
-        '4a08784919981e29eb0c6f44a2f7a0af' => __DIR__ . '/..' . '/codeception/base/phpunit5-loggers.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
     );
 
@@ -74,6 +72,10 @@ class ComposerStaticInitfdc425f9ef0b0561317aecf1e84d8ea7
         array (
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
+        ),
+        'A' => 
+        array (
+            'AmoCRM\\' => 7,
         ),
     );
 
@@ -191,6 +193,11 @@ class ComposerStaticInitfdc425f9ef0b0561317aecf1e84d8ea7
         'Codeception\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
+        ),
+        'AmoCRM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dotzero/amocrm/src',
+            1 => __DIR__ . '/..' . '/nabarabane/amocrm/src',
         ),
     );
 

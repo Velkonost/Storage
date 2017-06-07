@@ -62,6 +62,15 @@ class SiteController extends Controller
         ];
     }
 
+    // вот жта штука отлючает проверку CSRF для POST запроса, который делает AMOCRM
+    public function beforeAction($action)
+    {
+        if ($action->id == 'web-hook') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
     /**
      * Displays homepage.
      *
@@ -416,11 +425,13 @@ class SiteController extends Controller
 		]);
 
     }
-	public function actionIndex()
+
+
+	public function actionWelcome()
     {
 
        if (!Yii::$app->user->isGuest) {
-           return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+           return Yii::$app->response->redirect('storage');
         }
 
        $model = new LoginForm();
@@ -431,9 +442,9 @@ class SiteController extends Controller
 				'name' => 'cook',
 				'value' => 'cooksAreGood',
 			]));
-           return Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+           return Yii::$app->response->redirect('storage');
         }
-       return $this->render('index', [
+       return $this->render('welcome', [
             'model' => $model
         ]);
     }
@@ -445,10 +456,10 @@ class SiteController extends Controller
     public function actionLogin()
     {
 		if (Yii::$app->getRequest()->getCookies()->has('cook')){
-			Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+			Yii::$app->response->redirect('welcome');
 		}
         if (!Yii::$app->user->isGuest) {
-            Yii::$app->response->redirect('index.php?r=site%2Fstorage');
+            Yii::$app->response->redirect('storage');
         }
 
         $model = new LoginForm();
@@ -474,5 +485,38 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+     /**
+     * Webhooks AMO CRM
+     */
+    public function actionWebhook()
+    {
+        if (empty($_POST)) {
+            // не получено данных
+            exit('FAIL');
+        }
+        
+        // далее анализ полученнх данных
+        var_dump($_POST);
+
+        $post = new Things;
+        $post->article = "1223megaunicum";
+        $post->name = $data;
+        $post->s = 3;
+        $post->m = 4;
+        $post->l = 5;
+        $post->xl = 6;
+        $post->xxl = 7;
+        $post->xxxl = 8;
+        $post->price = 9;
+        $post->category = 'bitch3';
+        $amount = 123;
+        $post->amount = $amount; 
+
+        $post->save();
+
+
+        return $this->render('webhook');
     }
 }
