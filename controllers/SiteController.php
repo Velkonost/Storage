@@ -492,29 +492,48 @@ class SiteController extends Controller
      */
     public function actionWebhook()
     {
-        if (empty($_POST)) {
-            // не получено данных
-            exit('FAIL');
-        }
+        // if (empty($_POST)) {
+        //     // не получено данных
+        //     exit('FAIL');
+        // }
         
-        // далее анализ полученнх данных
-        var_dump($_POST);
+        // // далее анализ полученнх данных
+        // var_dump($_POST);
 
-        $post = new Things;
-        $post->article = "1223megaunicum";
-        $post->name = $data;
-        $post->s = 3;
-        $post->m = 4;
-        $post->l = 5;
-        $post->xl = 6;
-        $post->xxl = 7;
-        $post->xxxl = 8;
-        $post->price = 9;
-        $post->category = 'bitch3';
-        $amount = 123;
-        $post->amount = $amount; 
+        try {
+            $listener = new \AmoCRM\Webhooks\Listener();
 
-        $post->save();
+            // Добавление обработчика на уведомление contacts->add
+            $listener->on('add_lead', function ($domain, $id, $data) {
+                // $domain Поддомен amoCRM
+                // $id Id объекта связанного с уведомлением
+                // $data Поля возвращаемые уведомлением
+
+                $post = new Things;
+                $post->article = "1223megaunicum";
+                $post->name = $data;
+                $post->s = 3;
+                $post->m = 4;
+                $post->l = 5;
+                $post->xl = 6;
+                $post->xxl = 7;
+                $post->xxxl = 8;
+                $post->price = 9;
+                $post->category = 'bitch3';
+                $amount = 123;
+                $post->amount = $amount; 
+
+                $post->save();
+            });
+
+            // Вызов обработчика уведомлений
+            $listener->listen();
+
+        } catch (\AmoCRM\Exception $e) {
+            printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
+        }
+
+        
 
 
         return $this->render('webhook');
