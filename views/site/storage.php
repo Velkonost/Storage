@@ -85,7 +85,7 @@ function logoutT(){
             <div class="table-title" id="headRu">
                 <span class="country">Россия</span>
                 <div class="warhouse"><span class="sklad"><?=$russiaAmount?></span>
-                    <span class="reserv">(<?=$russiaArmoring?>)</span></div>
+                    <span class="reserv">(7)</span></div>
             </div>
             <div class="table-wrap" id="tableRussia">
                 <table name="russiaContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
@@ -159,7 +159,7 @@ function logoutT(){
             <div class="table-title" id="headCccp">
                 <span class="country">СССР</span>
                 <div class="warhouse"><span class="sklad"><?=$ussrAmount ?></span>
-                    <span class="reserv">(<?=$ussrArmoring?>)</span></div>
+                    <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableCccp">
             
@@ -236,7 +236,7 @@ function logoutT(){
             <div class="table-title" id="headOlimp">
                 <span class="country">Олимпиада 80</span>
                 <div class="warhouse"><span class="sklad"><?=$olympiad80Amount?></span>
-                    <span class="reserv">(<?=$olympiadArmoring?>)</span></div>
+                    <span class="reserv">(4)</span></div>
             </div>
             <div class="table-wrap" id="tableOlimpiada">
                 <table name="olympiad80Content" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
