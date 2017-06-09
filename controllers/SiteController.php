@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\Things;
 use app\models\WpPostmeta;
 use app\models\WpPosts;
+use app\models\Meta;
 use app\models\AddThingForm;
 use app\models\FormAdd;
 use app\models\EditForm;
@@ -78,6 +79,11 @@ class SiteController extends Controller
      */
     public function actionStorage()
     {
+        
+        $russiaArmoring = Meta::find()->where("meta_key='russia_armoring'")->one()->meta_value;
+        $ussrArmoring = Meta::find()->where("meta_key='ussr_armoring'")->one()->meta_value;
+        $olympiadArmoring = Meta::find()->where("meta_key='olympiad_armoring'")->one()->meta_value;
+ 
         $russiaNames = Things::find()->where("category='russia'")->all();
         $ussrNames = Things::find()->where("category='ussr'")->all();
         $olympiad80Names = Things::find()->where("category='olympiad80'")->all();       
@@ -421,7 +427,10 @@ class SiteController extends Controller
             'ussrAmount' => $ussrAmount,
             'olympiad80Amount' => $olympiad80Amount,
             'allarticles' => $allarticles,
-            'allclothes' => $allclothes
+            'allclothes' => $allclothes,
+            'russiaArmoring' => $russiaArmoring,
+            'ussrArmoring' => $ussrArmoring,
+            'olympiadArmoring' => $olympiadArmoring
         ]);
 
     }
@@ -502,88 +511,409 @@ class SiteController extends Controller
         $Response = [];
 
         try {
-            $listener = new \AmoCRM\Webhooks\Listener();
+                $listener = new \AmoCRM\Webhooks\Listener();
+
+                // Добавление обработчика на уведомление contacts->add
+                $listener->on('add_lead', function ($domain, $id, $data) {
+                
+                    #Массив с параметрами, которые нужно передать методом POST к API системы
+                    $user=array(
+                      'USER_LOGIN'=>'kranfear@mail.ru', #Ваш логин (электронная почта)
+                      'USER_HASH'=>'38f2e3461e664db15032bcab8b7c26e8' #Хэш для доступа к API (смотрите в профиле пользователя)
+                    );
+             
+                    $subdomain='new584549b112ca4'; #Наш аккаунт - поддомен
+             
+                    #Формируем ссылку для запроса
+                    $link='https://'.$subdomain.'.amocrm.ru/private/api/auth.php?type=json';
+            
+                    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                    #Устанавливаем необходимые опции для сеанса cURL
+                    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                    curl_setopt($curl,CURLOPT_URL,$link);
+                    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
+                    curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
+                    curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
+                    curl_setopt($curl,CURLOPT_HEADER,false);
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+                     
+                    $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                    $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+                    curl_close($curl); #Завершаем сеанс cURL
+            
+                    $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
+            
+                    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                    #Устанавливаем необходимые опции для сеанса cURL
+                    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                    curl_setopt($curl,CURLOPT_URL,$link2);
+                    curl_setopt($curl,CURLOPT_HEADER,false);
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+            
+                    $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                    $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
+                    curl_close($curl);
+            
+                    $dd = unparse($out);
+                        
+                    for($i = 0; $i< count($dd); $i++){
+                        
+                        if(strcmp($dd[$i]['brand'],"Олимпиада 80")==0){
+                            $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }else if(strcmp($dd[$i]['brand'],"Россия")==0){
+                            
+                            $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                    }
+                });
+                $listener -> listen();
+        } catch (\AmoCRM\Exception $e) {
+            printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
+        }
+        
+        try{
+        
+            $listenerSec = new \AmoCRM\Webhooks\Listener();
 
             // Добавление обработчика на уведомление contacts->add
-            $listener->on('add_lead', function ($domain, $id, $data) {
+            $listenerSec->on('status_lead', function ($domain, $id, $data) {
                 // $domain Поддомен amoCRM
-                // $id Id объекта связанного с уведомлением
-                $post = new Things;
-                $data = '{"response":{"leads":[{"id":"16564313","name":"test","date_create":1496820322,"created_user_id":"1178568","last_modified":1496820322,"account_id":"12988836","price":"","responsible_user_id":"1178568","linked_company_id":"","group_id":0,"pipeline_id":378687,"date_close":0,"closest_task":0,"deleted":0,"tags":[],"status_id":"12988842","custom_fields":[{"id":"1589586","name":"\u0411\u0440\u0435\u043d\u0434","values":[{"value":"Everlast","enum":"3764652"}]},{"id":"1589588","name":"\u0420\u0430\u0437\u043c\u0435\u0440","values":[{"value":"M","enum":"3764664"}]},{"id":"1933627","name":"\u041d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u043e\u0432\u0430\u0440\u0430","values":[{"value":"\u0421\u043f\u043e\u0440\u0442\u0438\u0432\u043d\u044b\u0439 \u043a\u043e\u0441\u0442\u044e\u043c \u2116 \u0443\u043f\u0430\u043a\u043e\u0432\u043a\u0438"}]},{"id":"1589608","name":"\u0411\u0440\u0435\u043d\u0434","values":[{"value":"Tapout","enum":"3773036"}]},{"id":"1589636","name":"\u0420\u0430\u0437\u043c\u0435\u0440","values":[{"value":"L","enum":"3764806"}]},{"id":"1589640","name":"\u0411\u0440\u0435\u043d\u0434","values":[{"value":"\u0420\u043e\u0441\u0441\u0438\u044f","enum":"3764820"}]},{"id":"1589644","name":"\u0420\u0430\u0437\u043c\u0435\u0440","values":[{"value":"M","enum":"3764826"}]},{"id":"1895370","name":"\u0412\u0435\u0441 \u0432 \u0433\u0440.","values":[{"value":"1000"}]},{"id":"1920100","name":"\u0414\u043e\u043c\u0430\u0448\u043d\u044f\u044f \u043f\u0440\u0438\u043c\u0435\u0440\u043a\u0430","values":[{"value":"1"}]},{"id":"1920102","name":"\u0414\u043e\u043c\u0430\u0448\u043d\u044f\u044f \u043f\u0440\u0438\u043c\u0435\u0440\u043a\u0430","values":[{"value":"1"}]},{"id":"1920106","name":"\u041e\u0441\u043c\u043e\u0442\u0440 \u0432\u043b\u043e\u0436\u0435\u043d\u0438\u044f","values":[{"value":"1"}]}],"main_contact_id":false}],"server_time":1496820332}}';
+                // $id Id объекта связанного с уведомление
                 
-                $data = unparse($data);
-                $post ->article = $id;
-                $post ->name =  $data[0]['brand'];
-                
+                #Массив с параметрами, которые нужно передать методом POST к API системы
+                $user=array(
+                  'USER_LOGIN'=>'kranfear@mail.ru', #Ваш логин (электронная почта)
+                  'USER_HASH'=>'38f2e3461e664db15032bcab8b7c26e8' #Хэш для доступа к API (смотрите в профиле пользователя)
+                );
+         
+                $subdomain='new584549b112ca4'; #Наш аккаунт - поддомен
+         
+                #Формируем ссылку для запроса
+                $link='https://'.$subdomain.'.amocrm.ru/private/api/auth.php?type=json';
         
+                $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                #Устанавливаем необходимые опции для сеанса cURL
+                curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                curl_setopt($curl,CURLOPT_URL,$link);
+                curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
+                curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
+                curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
+                curl_setopt($curl,CURLOPT_HEADER,false);
+                curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+                 
+                $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+                curl_close($curl); #Завершаем сеанс cURL
+                        
+        //        echo $code;
+        
+        
+                $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
+        
+                $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                #Устанавливаем необходимые опции для сеанса cURL
+                curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                curl_setopt($curl,CURLOPT_URL,$link2);
+                curl_setopt($curl,CURLOPT_HEADER,false);
+                curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+        
+                $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
+                curl_close($curl);
+                    if(unparse4($out) != 12998565)
+                    {
+                            $d = unparse($out);
+                            $d2 = unparse3($out);
+                            $d3 = unparse2($out);
+                            
+                             for($i = 0; $i<count($d); $i++){
+                                
+                                if(strcmp($d[$i]['brand'],"Олимпиада 80")==0){
+                                    
+                                    $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                                    $post->meta_value-=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s-=1;
+                                            break;
+                                        case 'M':
+                                            $post->m-=1;
+                                            break;
+                                        case 'L':
+                                            $post->l-=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl-=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl-=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl-=1;
+                                            break;
+                                    }
+                                    
+                                    $post -> amount -=1;
+                                    $post->save();
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
                 
-                $post -> save();
+                                    $newSizes = [];
                 
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
                 
-
-               // $data = unparse($data);//ТУТ РАСПАРСИНГ JSON-массива
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                    
+                                }else if(strcmp($d[$i]['brand'],"Россия")==0){
+                                    $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                                    $post->meta_value-=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s-=1;
+                                            break;
+                                        case 'M':
+                                            $post->m-=1;
+                                            break;
+                                        case 'L':
+                                            $post->l-=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl-=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl-=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl-=1;
+                                            break;
+                                    }
+                                    $post -> amount -=1;
+                                    $post->save();
+                                    
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
                 
-                //echo $data[0]['brand'];
+                                    $newSizes = [];
+                
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
+                
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                }
+                            }
+                    } else {
+                            $d = unparse($out);
+                            $d2 = unparse3($out);
+                            $d3 = unparse2($out);
+                            
+                             for($i = 0; $i<count($d); $i++){
+                                
+                                if(strcmp($d[$i]['brand'],"Олимпиада 80")==0){
+                                    
+                                    $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                                    $post->meta_value+=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s+=1;
+                                            break;
+                                        case 'M':
+                                            $post->m+=1;
+                                            break;
+                                        case 'L':
+                                            $post->l+=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl+=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl+=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl+=1;
+                                            break;
+                                    }
+                                    
+                                    $post -> amount +=1;
+                                    $post->save();
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+                
+                                    $newSizes = [];
+                
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
+                
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                    
+                                    
+                                }else if(strcmp($d[$i]['brand'],"Россия")==0){
+                                    $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                                    $post->meta_value+=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s+=1;
+                                            break;
+                                        case 'M':
+                                            $post->m+=1;
+                                            break;
+                                        case 'L':
+                                            $post->l+=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl+=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl+=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl+=1;
+                                            break;
+                                    }
+                                    $post -> amount +=1;
+                                    $post->save();
+                                    
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+                
+                                    $newSizes = [];
+                
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
+                
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                }
+                            }   
+                    }
             });
          
-         $listener -> listen();
-         //echo $data['response'];
-            
+         $listenerSec -> listen();
         
         } catch (\AmoCRM\Exception $e) {
             printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
         }
-
-        #Массив с параметрами, которые нужно передать методом POST к API системы
-        $user=array(
-          'USER_LOGIN'=>'kranfear@mail.ru', #Ваш логин (электронная почта)
-          'USER_HASH'=>'38f2e3461e664db15032bcab8b7c26e8' #Хэш для доступа к API (смотрите в профиле пользователя)
-        );
- 
-        $subdomain='new584549b112ca4'; #Наш аккаунт - поддомен
- 
-        #Формируем ссылку для запроса
-        $link='https://'.$subdomain.'.amocrm.ru/private/api/auth.php?type=json';
-
-        $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
-        #Устанавливаем необходимые опции для сеанса cURL
-        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
-        curl_setopt($curl,CURLOPT_URL,$link);
-        curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
-        curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
-        curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
-        curl_setopt($curl,CURLOPT_HEADER,false);
-        curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
-        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
-         
-        $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
-        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
-        curl_close($curl); #Завершаем сеанс cURL
-                
-        echo $code;
-
-        $id = 16577287;
-        $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
-
-        $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
-        #Устанавливаем необходимые опции для сеанса cURL
-        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
-        curl_setopt($curl,CURLOPT_URL,$link2);
-        curl_setopt($curl,CURLOPT_HEADER,false);
-        curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
-        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
-
-        $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
-        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
-        curl_close($curl);
-
-        $d = unparse($out);
+        
+        
+        
+        
         
         return $this->render('webhook',['resp'=>$Response]);
     
@@ -593,35 +923,67 @@ class SiteController extends Controller
         
         
         $data = json_decode($data);
+        $data = ($data->{'response'}->{'leads'}[0]->{'custom_fields'});
+        echo "<br/>";
+        $array = [];
+        $g = 0;
+
+        for($i = 0; $i<count($data); $i++){
+            if(strcmp($data[$i]->{'name'}, "Бренд")==0){
+                $array[$g]['brand'] = $data[$i]->{'values'}[0]->{'value'};
+                $g++;
+            }
+        }
+        return $array;
+    }
+    
+    
+    function unparse2($data){    
+        
+        
+        $data = json_decode($data);
         // echo $data['response']['leads'][0]['custom_fields'];
         $data = ($data->{'response'}->{'leads'}[0]->{'custom_fields'});
         echo "<br/>";
         $array = [];
         $g = 0;
-        
+
         for($i = 0; $i<count($data); $i++){
-            if(strcmp($data[$i]->{'name'}, "Бренд")==0){
-                $array[$g]['brand'] = $data[$i]->{'values'}[0]->{'value'};
-            }
-            
             if(strcmp($data[$i]->{'name'}, "Размер")==0){
                 $array[$g]['size'] = $data[$i]->{'values'}[0]->{'value'};
+                $g++;
             }
-            
-            if(strcmp($data[$i]->{'name'}, "Наименование товара")==0){
+        }
+        return $array;
+    }
+    
+    
+    function unparse3($data){    
+        
+        
+        $data = json_decode($data);
+        // echo $data['response']['leads'][0]['custom_fields'];
+        $data = ($data->{'response'}->{'leads'}[0]->{'custom_fields'});
+        echo "<br/>";
+        $array = [];
+        $g = 0;
+
+        for($i = 0; $i<count($data); $i++){
+            if(strcmp($data[$i]->{'name'}, "Артикул")==0){
                 $array[$g]['name'] = $data[$i]->{'values'}[0]->{'value'};
                 $g++;
             }
-            
-            
-            
-            
-          /*  array_push($array[$g], )
-            print_r($data[$i]->{'name'}."  :::  ");
-            print_r($data[$i]->{'values'}[0]->{'value'});
-            echo "<br/>";*/
         }
         return $array;
+    }
+    
+    function unparse4($data){    
+        
+        
+        $data = json_decode($data);
+        // echo $data['response']['leads'][0]['custom_fields'];
+        $data = ($data->{'response'}->{'leads'}[0]->{'status_id'});
+        return $data;
     }
     
 
