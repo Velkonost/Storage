@@ -449,7 +449,7 @@ class SiteController extends Controller
             
             Yii::$app->response->cookies->add(new \yii\web\Cookie([
                 'name' => 'cook',
-                'value' => 'cooksAreGood',
+                'value' => $model->username ,
             ]));
            return Yii::$app->response->redirect('storage');
         }

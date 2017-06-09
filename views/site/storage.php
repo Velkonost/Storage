@@ -16,16 +16,16 @@ $n = 1;
 
 
 function logoutT(){
-	Yii::$app->response->cookies->remove('cook');
-	Yii::$app->response->redirect('welcome');
+    Yii::$app->response->cookies->remove('cook');
+    Yii::$app->response->redirect('welcome');
 }
 ?>
 <script>
-	setInterval(request, 5000);
+    setInterval(request, 5000);
 </script>
 <script> function request(){<?php
-	if (!Yii::$app->getRequest()->getCookies()->has('cook')){
-		Yii::$app->response->redirect('welcome');
+    if (!Yii::$app->getRequest()->getCookies()->has('cook')){
+        Yii::$app->response->redirect('welcome');
 }?>}</script>
 
 <style type="text/css">
@@ -58,24 +58,24 @@ function logoutT(){
     }
     
 
-</style>
+</style> 
     <div class="wrapper">
         <div class="header">
             <div class="logo">
                 <a href="https://sport-form.ru/" target="_blank"><img src="../web/img/logo.png" alt="logo"></a>
             </div>
 
-			         <div class="center" style="display: inline-block; width: 520px">
-						<h1>Склад</h1>
-						<button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
-                        <button style = "margin-top:5%" name="button" id="inventar">Инвентаризация</button>
-					</div>
-					<div class="exit">
-						<a onclick = 'return location.href = "<?php Yii::$app->user->logout();?>"' href="welcome?log=true" title="">
-							<span color="red">Выход</span>
-								<img src="../web/img/exit.png" alt="" />
-						</a>
-					</div>	
+                     <div class="center" style="display: inline-block; width: 520px">
+                        <h1>Склад</h1>
+                        <button style = "margin-top:5%" name="button" id="add">Добавить товар</button>
+                        <?php if(strcmp(Yii::$app->request->cookies->getValue('cook'), "manager")==0 && Yii::$app->getRequest()->getCookies()->has('cook')){ }else{ echo '<button style = "margin-top:5%" name="button" id="inventar">Инвентаризация</button>'; }?>
+                    </div>
+                    <div class="exit">
+                        <a onclick = 'return location.href = "<?php Yii::$app->user->logout();?>"' href="welcome?log=true" title="">
+                            <span color="red">Выход</span>
+                                <img src="../web/img/exit.png" alt="" />
+                        </a>
+                    </div>  
         </div>
         <div class="clear"></div>
     
@@ -92,8 +92,8 @@ function logoutT(){
                 <table name="russiaContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
-                            <td style="text-align: center"><span>Артикул</span></td>
-                            <td><span>Название</span></td>
+                            <td style="text-align: center; width:20%"><span>Артикул</span></td>
+                            <td style="width:35%"><span>Название</span></td>
                             <td>S</td>
                             <td>M</td>
                             <td>L</td>
@@ -168,8 +168,8 @@ function logoutT(){
                <table name="ussrContent" class="Russia" style="border-collapse: separate; border-spacing: 3px;"> 
                     <thead>
                         <tr>
-                            <td style="text-align: center"><span>Артикул</span></td>
-                            <td><span>Название</span></td>                            
+                            <td style="text-align: center; width:20%"><span>Артикул</span></td>
+                            <td style="width:35%"><span>Название</span></td>
                             <td>S</td>
                             <td>M</td>
                             <td>L</td>
@@ -243,8 +243,8 @@ function logoutT(){
                 <table name="olympiad80Content" class="Russia" style="border-collapse: separate; border-spacing: 3px;">
                     <thead>
                         <tr>
-                            <td style="text-align: center"><span>Артикул</span></td>
-                            <td><span>Название</span></td>
+                            <td style="text-align: center; width:20%"><span>Артикул</span></td>
+                            <td style="width:35%"><span>Название</span></td>
                             <td>S</td>
                             <td>M</td>
                             <td>L</td>
@@ -312,13 +312,13 @@ function logoutT(){
 
 
     <div id="dark">
-	<?php $f = ActiveForm::begin()?>
-	
+    <?php $f = ActiveForm::begin()?>
+    
         <div class="spaceWrapper">
             <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
-				<?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -300%;display:inline-block;','options' => ['Россия'=>['selected'=>true]]])->label('');?>
+                <?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -300%;display:inline-block;','options' => ['Россия'=>['selected'=>true]]])->label('');?>
             </div>
-			
+            
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">
@@ -336,30 +336,30 @@ function logoutT(){
                                     <td>цена</td>
                                 </tr>
                             </thead>
-							
+                            
                             <tbody class="hidden_table">
-									
-								<?php for($i = 0; $i < 3; $i++){?>
-										<tr class='hidden-row'>
-											<td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i", 'style'=>'width:205px; margin-left:5px;','options' => ['0'=>['selected'=>true]]])->label('');?></td>
-											<td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>' width: 200px; margin-left:5px', 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
+                                    
+                                <?php for($i = 0; $i < 3; $i++){?>
+                                        <tr class='hidden-row'>
+                                            <td><?=$f->field($form, 'article[]')->dropDownList($allarticles, ['id' => "selectName$i", 'style'=>'width:205px; margin-left:5px;','options' => ['0'=>['selected'=>true]]])->label('');?></td>
+                                            <td style="background-color: #f7f6e7"><?=$f->field($form, 'names[]')->dropDownList($allclothes, ['id' => "selectArticle$i", 'style'=>' width: 200px; margin-left:5px', 'options' => ['0'=>['selected'=>true]]])->label('');?></td>
 
-											<td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
-											<td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
-											
-										</tr>
-									<?php } ?>
+                                            <td><?=$f->field($form, 'ss[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'ms[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'ls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'xls[]')->textInput(['style'=>'width:98%' ,'value' =>'0', 'type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'xxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'xxxls[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+                                            <td><?= $f->field($form, 'prices[]')->textInput(['style'=>'width:98%' , 'value' =>'0','type'=>'number', 'min' => '0'])->label('')?></td>
+                                            
+                                        </tr>
+                                    <?php } ?>
                             </tbody>
                         </table>
                 </div>
             </div><!--<button type="submit" name="button_add" id="future">Добавить</button>-->
-			<?= Html::submitButton('Добавить', ['id'=>'future', 'name' => 'button_save']) ?>
-			<?php ActiveForm::end(); ?>
+            <?= Html::submitButton('Добавить', ['id'=>'future', 'name' => 'button_save']) ?>
+            <?php ActiveForm::end(); ?>
            <!-- <button name="row_add" id="add_row">+</button>-->
         </div>
     </div>
@@ -472,9 +472,9 @@ function logoutT(){
     });
 
     </script>
-	
+    
 
-	<style>		
+    <style>     
        a {
         color: #000000; /* Цвет обычной ссылки */ 
         text-decoration: none; /* Убираем подчеркивание у ссылок */

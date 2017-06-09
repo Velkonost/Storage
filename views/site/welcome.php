@@ -15,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	use yii\widgets\Breadcrumbs;
 	use app\assets\AppAsset;
 
-
-
 $this->title = 'Storage';
 if(isset($_GET['log'])){
 	Yii::$app->response->cookies->remove('cook');
