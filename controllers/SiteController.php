@@ -370,7 +370,6 @@ class SiteController extends Controller
                 $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
 
                 $newSizes = [];
-                $i = 1;
 
                 if ($editForm->editSs[$i] > 0) {
                     array_push($newSizes, 1);
@@ -536,14 +535,16 @@ class SiteController extends Controller
                     curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
                     curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
                     curl_setopt($curl,CURLOPT_HEADER,false);
-                    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-                    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
                     curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
                     curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
                      
                     $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
                     $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
                     curl_close($curl); #Завершаем сеанс cURL
+            
+                    sleep(2);
             
                     $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
             
@@ -553,8 +554,8 @@ class SiteController extends Controller
                     curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
                     curl_setopt($curl,CURLOPT_URL,$link2);
                     curl_setopt($curl,CURLOPT_HEADER,false);
-                    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-                    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
                     curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
                     curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
             
@@ -565,14 +566,17 @@ class SiteController extends Controller
                     $dd = unparse($out);
                         
                     for($i = 0; $i< count($dd); $i++){
-                        
                         if(strcmp($dd[$i]['brand'],"Олимпиада 80")==0){
                             $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
                             $post->meta_value+=1;
                             $post->save();
                         }else if(strcmp($dd[$i]['brand'],"Россия")==0){
-                            
                             $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                        else if(strcmp($dd[$i]['brand'],"СССР")==0){
+                            $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
                             $post->meta_value+=1;
                             $post->save();
                         }
@@ -612,8 +616,8 @@ class SiteController extends Controller
                 curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
                 curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
                 curl_setopt($curl,CURLOPT_HEADER,false);
-                curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-                curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
                 curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
                 curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
                  
@@ -621,8 +625,7 @@ class SiteController extends Controller
                 $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
                 curl_close($curl); #Завершаем сеанс cURL
                         
-        //        echo $code;
-        
+                sleep(2);
         
                 $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
         
@@ -632,8 +635,8 @@ class SiteController extends Controller
                 curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
                 curl_setopt($curl,CURLOPT_URL,$link2);
                 curl_setopt($curl,CURLOPT_HEADER,false);
-                curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-                curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__DIR__).'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
                 curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
                 curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
         
@@ -770,6 +773,67 @@ class SiteController extends Controller
                                     $sizes->meta_value = serialize($newSizes);
                                     $sizes->save();
                                 }
+                                else if(strcmp($d[$i]['brand'],"СССР")==0){
+                                    $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
+                                    $post->meta_value-=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s-=1;
+                                            break;
+                                        case 'M':
+                                            $post->m-=1;
+                                            break;
+                                        case 'L':
+                                            $post->l-=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl-=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl-=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl-=1;
+                                            break;
+                                    }
+                                    $post -> amount -=1;
+                                    $post->save();
+                                    
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+                
+                                    $newSizes = [];
+                
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
+                
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                }
                             }
                     } else {
                             $d = unparse($out);
@@ -842,6 +906,67 @@ class SiteController extends Controller
                                     
                                 }else if(strcmp($d[$i]['brand'],"Россия")==0){
                                     $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                                    $post->meta_value+=1;
+                                    $post->save();
+                                    
+                                    $post = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    
+                                    switch($d3[$i]['size']){
+                                        case 'S':
+                                            $post->s+=1;
+                                            break;
+                                        case 'M':
+                                            $post->m+=1;
+                                            break;
+                                        case 'L':
+                                            $post->l+=1;
+                                            break;
+                                        case 'XL':
+                                            $post->xl+=1;
+                                            break;
+                                        case 'XXL':
+                                            $post->xxl+=1;
+                                            break;
+                                        case 'XXXL':
+                                            $post->xxxl+=1;
+                                            break;
+                                    }
+                                    $post -> amount +=1;
+                                    $post->save();
+                                    
+                                    
+                                    $thingsPost = Things::find()->where("article = '".$d2[$i]['name']."'")->one();
+                                    $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='".$d2[$i]['name']."') ")->one();
+                                    $postId = $wpPosts->post_id;
+                                    
+                                    $sizes = WpPostmeta::find()->where("(meta_key='sizes') AND (post_id='$postId')")->one();
+                
+                                    $newSizes = [];
+                
+                                    if ($thingsPost->s > 0) {
+                                        array_push($newSizes, 1);
+                                    } 
+                                    if ($thingsPost->m > 0) {
+                                        array_push($newSizes, 2);
+                                    }
+                                    if ($thingsPost->l > 0) {
+                                        array_push($newSizes, 3);
+                                    }
+                                    if ($thingsPost->xl > 0) {
+                                        array_push($newSizes, 4);
+                                    }
+                                    if ($thingsPost->xxl > 0) {
+                                        array_push($newSizes, 5);
+                                    }
+                                    if ($thingsPost->xxxl > 0) {
+                                        array_push($newSizes, 6);
+                                    }
+                
+                                    $sizes->meta_value = serialize($newSizes);
+                                    $sizes->save();
+                                }
+                                else if(strcmp($d[$i]['brand'],"СССР")==0){
+                                    $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
                                     $post->meta_value+=1;
                                     $post->save();
                                     

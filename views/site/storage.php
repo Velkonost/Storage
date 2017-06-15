@@ -439,35 +439,39 @@ function logoutT(){
         {
             var selectName = document.getElementById('selectName0');
             var selectArticle = document.getElementById('selectArticle0');
-            console.log(selectArticle[selectName.options.selectedIndex]);
             $('#selectArticle0').val(selectArticle[selectName.options.selectedIndex].value);
         });
         $('#selectArticle0').on("change", function()
         {
             var selectArticle = document.getElementById('selectArticle0');
-            $('#selectName0').val(selectArticle.options.selectedIndex);
+            var selectName = document.getElementById('selectName0');
+            $('#selectName0').val(selectName[selectArticle.options.selectedIndex].value);
         }); 
 
         $('#selectName1').on("change", function()
         {
             var selectName = document.getElementById('selectName1');
-            $('#selectArticle1').val(selectName.options.selectedIndex);
+            var selectArticle = document.getElementById('selectArticle1');
+            $('#selectArticle1').val(selectArticle[selectName.options.selectedIndex].value);
         });
         $('#selectArticle1').on("change", function()
         {
             var selectArticle = document.getElementById('selectArticle1');
-            $('#selectName1').val(selectArticle.options.selectedIndex);
+            var selectName = document.getElementById('selectName1');
+            $('#selectName1').val(selectName[selectArticle.options.selectedIndex].value);
         });  
 
         $('#selectName2').on("change", function()
         {
             var selectName = document.getElementById('selectName2');
-            $('#selectArticle2').val(selectName.options.selectedIndex);
+            var selectArticle = document.getElementById('selectArticle2');
+            $('#selectArticle2').val(selectArticle[selectName.options.selectedIndex].value);
         });
         $('#selectArticle2').on("change", function()
         {
             var selectArticle = document.getElementById('selectArticle2');
-            $('#selectName2').val(selectArticle.options.selectedIndex);
+            var selectName = document.getElementById('selectName2');
+            $('#selectName2').val(selectName[selectArticle.options.selectedIndex].value);
         });   
     });
 
