@@ -128,15 +128,15 @@ class SiteController extends Controller
                 $xxl = Html::encode($form->xxls[$i]);
                 $xxxl = Html::encode($form->xxxls[$i]);
                 $price = Html::encode($form->prices[$i]);
-                $article = Html::encode($form->article[$i]);
+                $article = empty($form->article[$i]) ? NULL : Html::encode($form->article[$i]);
                 $dropDownList = Html::encode($form->dropDownList);
 
-                if ($article == NULL || $name == NULL || $s == NULL || $m == NULL 
-                    || $l == NULL || $xl == NULL || $xxl == NULL || $xxxl == NULL || $price == NULL
-                    || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) continue;
+                $cont = true;
+
+                if ($article == NULL || $name == NULL || ($s == 0 && $m == 0 && $l == 0 && $xl == 0 && $xxl == 0 && $xxxl == 0)) $cont = false;
                 
                 
-                if(in_array($article, $russiaExist) || in_array($article, $ussrExist) || in_array($article, $olympiad80Exist)) { //tut
+                if($cont && (in_array($article, $russiaExist) || in_array($article, $ussrExist) || in_array($article, $olympiad80Exist))) { //tut
                     $update = Things::find()->where("article='$article'")->one();
                     $update->name = $name;
                     $update->s += $s;
@@ -151,15 +151,15 @@ class SiteController extends Controller
 
                     $update->save();
                     
-                    $form->name = '0';
-                    $form->s = '0';
-                    $form->m = '0';
-                    $form->l = '0';
-                    $form->xl = '0';
-                    $form->xxl = '0';
-                    $form->xxxl = '0';
-                    $form->price = '0';
-                    $form->article = '';
+                    // $form->name = '0';
+                    // $form->s = '0';
+                    // $form->m = '0';
+                    // $form->l = '0';
+                    // $form->xl = '0';
+                    // $form->xxl = '0';
+                    // $form->xxxl = '0';
+                    // $form->price = '0';
+                    // $form->article = '';
 
 
                     $wpPosts = WpPostmeta::find()->where("(meta_key='article') AND (meta_value='$article') ")->one();
@@ -190,32 +190,30 @@ class SiteController extends Controller
 
                     $sizes->meta_value = serialize($newSizes);
                     $sizes->save();
-
                 } else { // tut
-                    $post = new Things;
-                    $post->name = $name;
-                    $post->article = $article;
-                    $post->s = $s;
-                    $post->m = $m;
-                    $post->l = $l;
-                    $post->xl = $xl;
-                    $post->xxl = $xxl;
-                    $post->xxxl = $xxxl;
-                    $post->amount = $s + $m + $l + $xl + $xxl + $xxxl;
-                    $post->price = $price;
-                    $post->category = $dropDownList;
-                    $post->save(); 
+                    // $post = new Things;
+                    // $post->name = $name;
+                    // $post->article = $article;
+                    // $post->s = $s;
+                    // $post->m = $m;
+                    // $post->l = $l;
+                    // $post->xl = $xl;
+                    // $post->xxl = $xxl;
+                    // $post->xxxl = $xxxl;
+                    // $post->amount = $s + $m + $l + $xl + $xxl + $xxxl;
+                    // $post->price = $price;
+                    // $post->category = $dropDownList;
+                    // $post->save(); 
 
-                    $form->name = '0';
-                    $form->s = '0';
-                    $form->m = '0';
-                    $form->l = '0';
-                    $form->xl = '0';
-                    $form->xxl = '0';
-                    $form->xxxl = '0';
-                    $form->price = '0'; 
-                    $form->article = '';    
-
+                    // $form->name = '0';
+                    // $form->s = '0';
+                    // $form->m = '0';
+                    // $form->l = '0';
+                    // $form->xl = '0';
+                    // $form->xxl = '0';
+                    // $form->xxxl = '0';
+                    // $form->price = '0'; 
+                    // $form->article = '';    
                 }
             }
         } else {
