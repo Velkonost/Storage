@@ -62,7 +62,7 @@ function logoutT(){
     <div class="wrapper">
         <div class="header">
             <div class="logo">
-                <a href="https://sport-form.ru/" target="_blank"><img src="../web/img/logo.png" alt="logo"></a>
+                <a href="http://rusichsport.ru/" target="_blank"><img src="../web/img/logo.png" alt="logo"></a>
             </div>
 
                      <div class="center" style="display: inline-block; width: 520px">
@@ -315,10 +315,7 @@ function logoutT(){
     <?php $f = ActiveForm::begin()?>
     
         <div class="spaceWrapper">
-            <div class="text_form"><a style = "float:left; margin-left:0.5%">Выберите категорию:</a>
-                <?=$f->field($form, 'dropDownList')->dropDownList(['russia'=>'Россия', 'ussr' =>'СССР', 'olympiad80'=>'Олимпиада 80'], ['style'=>'width:100%;margin-left: -300%;display:inline-block;','options' => ['Россия'=>['selected'=>true]]])->label('');?>
-            </div>
-            
+           
             <button name="button_close" id="close">X</button>
             <div id="modal-table">
                 <div class="table-wrap-hidden">

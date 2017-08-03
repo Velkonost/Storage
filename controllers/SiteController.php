@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Things;
+use app\models\Deals;
 use app\models\WpPostmeta;
 use app\models\WpPosts;
 use app\models\Meta;
@@ -71,6 +72,10 @@ class SiteController extends Controller
         }
         return parent::beforeAction($action);
     }
+    
+    public function actionIndex() {
+        $this->actionWelcome();
+    }
 
     /**
      * Displays homepage.
@@ -129,7 +134,7 @@ class SiteController extends Controller
                 $xxxl = Html::encode($form->xxxls[$i]);
                 $price = Html::encode($form->prices[$i]);
                 $article = empty($form->article[$i]) ? NULL : Html::encode($form->article[$i]);
-                $dropDownList = Html::encode($form->dropDownList);
+                // $dropDownList = Html::encode($form->dropDownList);
 
                 $cont = true;
 
@@ -138,7 +143,7 @@ class SiteController extends Controller
                 
                 if($cont && (in_array($article, $russiaExist) || in_array($article, $ussrExist) || in_array($article, $olympiad80Exist))) { //tut
                     $update = Things::find()->where("article='$article'")->one();
-                    $update->name = $name;
+                    // $update->name = $name;
                     $update->s += $s;
                     $update->m += $m;
                     $update->l += $l;
@@ -147,7 +152,6 @@ class SiteController extends Controller
                     $update->xxxl += $xxxl;
                     $update->amount += $s + $m + $l + $xl + $xxl + $xxxl;
                     $update->price += $price;
-                    $update->category = $dropDownList;
 
                     $update->save();
                     
@@ -498,15 +502,7 @@ class SiteController extends Controller
      */
     public function actionWebhook()
     {
-        // if (empty($_POST)) {
-        //     // не получено данных
-        //     exit('FAIL');
-        // }
-        
-        // // далее анализ полученнх данных
-        // var_dump($_POST);
         $Response = [];
-
         try {
                 $listener = new \AmoCRM\Webhooks\Listener();
 
@@ -562,8 +558,28 @@ class SiteController extends Controller
                     curl_close($curl);
             
                     $dd = unparse($out);
-                        
+                    
+                    $post = new Deals;
+                    $text = unparse5($out);
+                    $post->id=$text;
                     for($i = 0; $i< count($dd); $i++){
+                        
+                        if($i==0){
+                                $post->cat1=$dd[$i]['brand'];
+                        }else if($i==1){
+                                $post->cat2=$dd[$i]['brand'];
+                        }else if($i==2){
+                              $post->cat3=$dd[$i]['brand'];
+                        }else if($i==3){
+                                $post->cat4=$dd[$i]['brand'];
+                        }
+                        
+                    }        
+                    $post->save();   
+                    
+                    
+                    for($i = 0; $i< count($dd); $i++){
+                        
                         if(strcmp($dd[$i]['brand'],"Олимпиада 80")==0){
                             $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
                             $post->meta_value+=1;
@@ -1034,7 +1050,164 @@ class SiteController extends Controller
             printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
         }
         
-        
+        try {
+                $listenerThird = new \AmoCRM\Webhooks\Listener();
+
+                // Добавление обработчика на уведомление contacts->add
+                $listenerThird->on('update_lead', function ($domain, $id, $data) {
+                
+                    #Массив с параметрами, которые нужно передать методом POST к API системы
+                    $user=array(
+                      'USER_LOGIN'=>'kranfear@mail.ru', #Ваш логин (электронная почта)
+                      'USER_HASH'=>'38f2e3461e664db15032bcab8b7c26e8' #Хэш для доступа к API (смотрите в профиле пользователя)
+                    );
+             
+                    $subdomain='new584549b112ca4'; #Наш аккаунт - поддомен
+             
+                    #Формируем ссылку для запроса
+                    $link='https://'.$subdomain.'.amocrm.ru/private/api/auth.php?type=json';
+            
+                    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                    #Устанавливаем необходимые опции для сеанса cURL
+                    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                    curl_setopt($curl,CURLOPT_URL,$link);
+                    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
+                    curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($user));
+                    curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
+                    curl_setopt($curl,CURLOPT_HEADER,false);
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+                     
+                    $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                    $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+                    curl_close($curl); #Завершаем сеанс cURL
+            
+                    sleep(2);
+            
+                    $link2 = 'https://'.$subdomain.'.amocrm.ru/private/api/v2/json/leads/list?id='.$id;
+            
+                    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+                    #Устанавливаем необходимые опции для сеанса cURL
+                    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+                    curl_setopt($curl,CURLOPT_URL,$link2);
+                    curl_setopt($curl,CURLOPT_HEADER,false);
+                    curl_setopt($curl,CURLOPT_COOKIEFILE,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_COOKIEJAR,__DIR__.'/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+                    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+            
+                    $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+                    $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
+                    curl_close($curl);
+            
+                    $dd = unparse($out);
+                    
+                    $text = unparse5($out);
+                    $post = Deals::find()->where("id='$text'")->one();
+                    $cat1 = $post->cat1;
+                    $cat2 = $post->cat2;
+                    $cat3 = $post->cat3;
+                    $cat4 = $post->cat4;
+                    
+                    $nCat1 = ""; $nCat2 = ""; $nCat3 = ""; $nCat4 = "";
+                    
+                    for($i = 0; $i< count($dd); $i++){
+                        
+                        if($i==0){
+                            $nCat1 = $dd[$i]['brand'];
+                        }else if($i==1){
+                            $nCat2 = $dd[$i]['brand'];
+                        }else if($i==2){
+                            $nCat3 = $dd[$i]['brand'];
+                        }else if($i==3){
+                            $nCat4 = $dd[$i]['brand'];
+                        }
+                        
+                    }        
+                    
+                    $post->cat1 = $nCat1;
+                    $post->cat2 = $nCat2;
+                    $post->cat3 = $nCat3;
+                    $post->cat4 = $nCat4;
+                    
+                    $post->save();   
+
+                    
+                    if (strcmp($cat1, $nCat1) != 0) {
+                        if(strcmp($nCat1,"Олимпиада 80")==0) {
+                            $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat1,"Россия")==0) {
+                            $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat1,"СССР")==0) {
+                            $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                    }
+                 
+                    if (strcmp($cat2, $nCat2) != 0) {
+                        if(strcmp($nCat2,"Олимпиада 80")==0) {
+                            $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat2,"Россия")==0) {
+                            $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat2,"СССР")==0) {
+                            $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                    }
+                    
+                    if (strcmp($cat3, $nCat3) != 0) {
+                        if(strcmp($nCat3,"Олимпиада 80")==0) {
+                            $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat3,"Россия")==0) {
+                            $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat3,"СССР")==0) {
+                            $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                    }
+                    
+                    if (strcmp($cat4, $nCat4) != 0) {
+                        if(strcmp($nCat1,"Олимпиада 80")==0) {
+                            $post = Meta::find()->where("meta_key='olympiad_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat4,"Россия")==0) {
+                            $post = Meta::find()->where("meta_key='russia_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        } else if(strcmp($nCat4,"СССР")==0) {
+                            $post = Meta::find()->where("meta_key='ussr_armoring'")->one();
+                            $post->meta_value+=1;
+                            $post->save();
+                        }
+                    }
+                 
+                    
+                   
+                });
+                $listenerThird -> listen();
+        } catch (\AmoCRM\Exception $e) {
+            printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
+        }
         
         
         
@@ -1059,7 +1232,12 @@ class SiteController extends Controller
         }
         return $array;
     }
-    
+    function unparse5($data){    
+        
+        $data = json_decode($data);
+        $data = $data->{'response'}->{'leads'}[0]->{'id'};
+        return $data;
+    }
     
     function unparse2($data){    
         
@@ -1079,7 +1257,6 @@ class SiteController extends Controller
         }
         return $array;
     }
-    
     
     function unparse3($data){    
         
@@ -1101,8 +1278,6 @@ class SiteController extends Controller
     }
     
     function unparse4($data){    
-        
-        
         $data = json_decode($data);
         // echo $data['response']['leads'][0]['custom_fields'];
         $data = ($data->{'response'}->{'leads'}[0]->{'status_id'});
